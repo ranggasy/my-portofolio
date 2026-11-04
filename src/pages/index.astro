@@ -1,0 +1,2038 @@
+---
+import Lanyard from "../components/Lanyard.astro";
+import Mascot from "../components/Mascot.astro";
+import Meteors from "../components/Meteors.astro";
+import "../styles/global.css";
+import { Icon } from "astro-icon/components";
+import ContactForm from "../components/ContactForm.astro";
+
+// Data Tech Stack berdasarkan keahlian yang tercantum di CV
+const techCategories = [
+  {
+    category: "PROGRAMMING & FRONTEND",
+    items: [
+      { name: "PHP", icon: "simple-icons:php", color: "text-indigo-500" },
+      {
+        name: "JavaScript",
+        icon: "simple-icons:javascript",
+        color: "text-yellow-500",
+      },
+      { name: "HTML5", icon: "simple-icons:html5", color: "text-orange-600" },
+      { name: "CSS3", icon: "simple-icons:css3", color: "text-blue-500" },
+      {
+        name: "Next.js",
+        icon: "simple-icons:nextdotjs",
+        color: "text-neutral-900 dark:text-white",
+      },
+      {
+        name: "Tailwind CSS",
+        icon: "simple-icons:tailwindcss",
+        color: "text-cyan-400",
+      },
+      { name: "Astro", icon: "simple-icons:astro", color: "text-orange-500" },
+      {
+        name: "Alpine.js",
+        icon: "simple-icons:alpinedotjs",
+        color: "text-cyan-500",
+      },
+    ],
+  },
+  {
+    category: "FRAMEWORKS",
+    items: [
+      {
+        name: "CodeIgniter 4",
+        icon: "simple-icons:codeigniter",
+        color: "text-orange-600",
+      },
+      { name: "Laravel", icon: "simple-icons:laravel", color: "text-red-500" },
+    ],
+  },
+  {
+    category: "DATABASE",
+    items: [
+      { name: "MySQL", icon: "simple-icons:mysql", color: "text-blue-500" },
+      {
+        name: "Supabase",
+        icon: "simple-icons:supabase",
+        color: "text-emerald-500",
+      },
+    ],
+  },
+  {
+    category: "DEVELOPMENT TOOLS",
+    items: [
+      { name: "Git", icon: "simple-icons:git", color: "text-orange-600" },
+      {
+        name: "GitHub",
+        icon: "simple-icons:github",
+        color: "text-neutral-900 dark:text-white",
+      },
+      {
+        name: "Visual Studio Code",
+        icon: "simple-icons:visualstudiocode",
+        color: "text-blue-500",
+      },
+      {
+        name: "Vercel",
+        icon: "simple-icons:vercel",
+        color: "text-neutral-900 dark:text-white",
+      },
+    ],
+  },
+  {
+    category: "OTHER TOOLS",
+    items: [
+      {
+        name: "Microsoft Office",
+        icon: "simple-icons:microsoftoffice",
+        color: "text-red-500",
+      },
+      { name: "Canva", icon: "simple-icons:canva", color: "text-cyan-500" },
+      {
+        name: "CapCut",
+        icon: "lucide:scissors",
+        color: "text-neutral-900 dark:text-white",
+      },
+    ],
+  },
+];
+
+const softSkills = [
+  "Problem Solving",
+  "Teamwork",
+  "Analytical Thinking",
+  "Time Management",
+  "Adaptability",
+  "Fast Learner",
+];
+
+// Flat list untuk animasi Marquee di bagian atas
+const marqueeTechs = techCategories.flatMap((c) => c.items);
+
+// Data Featured Projects. Tautan demo dan repositori diisi setelah URL final tersedia.
+const projects = [
+  {
+    number: "01",
+    name: "Sistem Informasi Manajemen SLB YPAC",
+    type: "WEB APPLICATION / PWA",
+    description:
+      "Sistem informasi sekolah berbasis Progressive Web App (PWA) yang dikembangkan sebagai pusat layanan informasi interaktif dan aksesibel. Website menyediakan pengelolaan profil sekolah, data guru, berita, galeri, PPDB, E-Modul, serta halaman informasi sekolah.",
+    stack: ["CodeIgniter 4", "MySQL", "Tailwind CSS", "Alpine.js", "PWA"],
+    image: "/images/projects/slb.png",
+    demoUrl: "https://slbypacpkp.sch.id/",
+    githubUrl: "",
+  },
+  {
+    number: "02",
+    name: "TOEFL TestMe",
+    type: "WEB APPLICATION",
+    description:
+      "Platform latihan TOEFL online yang saya kembangkan sebagai sarana persiapan menghadapi tes TOEFL kampus. Pengguna dapat berlatih mengerjakan soal melalui website sehingga bisa membiasakan diri dengan format latihan sebelum mengikuti tes kampus.",
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
+    image: "/images/projects/toefl.png",
+    demoUrl: "https://toefl-testme.vercel.app/",
+    githubUrl: "",
+  },
+  {
+    number: "03",
+    name: "Vexora Store",
+    type: "WEB PROJECT",
+    description:
+      "Website e-commerce berbasis affiliate untuk menampilkan dan mengkurasi produk serta mengarahkan pengunjung ke halaman pembelian melalui tautan affiliate. Dibangun menggunakan Next.js dan Firebase.",
+    stack: ["Next.js 16", "React 19", "Firebase", "Tailwind CSS 4"],
+    image: "/images/projects/vexora.png",
+    demoUrl: "https://www.vexorastore.web.id/",
+    githubUrl: "",
+  },
+  {
+    number: "04",
+    name: "HIMTI Atma Luhur",
+    type: "ORGANIZATION WEBSITE",
+    description:
+      "Website Sistem Informasi Manajemen HIMTI ISB Atma Luhur sebagai pusat informasi dan layanan digital mahasiswa. Menyediakan halaman Beranda, Tentang, Kepengurusan, Berita, serta layanan Pendaftaran/OPREC, E-Sertifikat, Pemesanan PDH, dan Suara Mahasiswa atau Kotak Aspirasi.",
+    stack: [
+      "Next.js 16",
+      "React 19",
+      "Firebase",
+      "Firebase Admin",
+      "Tailwind CSS 4",
+    ],
+    image: "/images/projects/himti.png",
+    demoUrl: "https://himtiatmaluhur.vercel.app/",
+    githubUrl: "",
+  },
+  {
+    number: "05",
+    name: "VexoraPOS",
+    type: "POINT OF SALE / STORE MANAGEMENT",
+    description:
+      "Aplikasi Point of Sale (POS) dan manajemen toko berbasis web untuk mendukung operasional ritel, mulai dari transaksi penjualan tunai dan QRIS, pengelolaan produk dan inventaris, pembelian serta supplier, hingga pengelolaan shift kasir dan rekonsiliasi kas. Sistem menggunakan frontend Next.js yang terhubung ke REST API Laravel dengan PostgreSQL. Saat ini masih dalam tahap pengembangan aktif.",
+    stack: [
+      "Next.js 16",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Laravel 13",
+      "PHP 8.4",
+      "PostgreSQL 18",
+      "Laravel Sanctum",
+    ],
+    image: "/images/projects/vexorapos.png",
+    demoUrl: "",
+    githubUrl: "",
+  },
+];
+
+// Data Experience, Education, Organization, Certificates, and Achievements
+const experiences = [
+  {
+    period: "Sep 2025 – Jan 2026",
+    role: "Internship – Bagian Hubungan Masyarakat (Subbagian Multimedia)",
+    organization: "Polda Kepulauan Bangka Belitung",
+    status: "Internship",
+    bullets: [
+      "Membantu proses penyuntingan video untuk kebutuhan publikasi dan penyampaian informasi kepada masyarakat.",
+      "Membuat dan mengolah konten multimedia untuk media sosial, termasuk Instagram dan TikTok.",
+      "Menggunakan CapCut dan Canva untuk mendukung produksi konten digital sesuai kebutuhan publikasi.",
+    ],
+    tags: ["CapCut", "Canva", "Video Editing", "Content Creation"],
+  },
+];
+
+const education = [
+  {
+    period: "2022 – 2026",
+    degree: "S1 Teknik Informatika · IPK 3,92/4,00",
+    institution: "Institut Sains dan Bisnis Atma Luhur – Pangkalpinang",
+    status: "Graduate",
+    bullets: [
+      "Mempelajari pemrograman, algoritma dan struktur data, pengembangan aplikasi web dan mobile, jaringan komputer, basis data, analisis sistem, rekayasa perangkat lunak, serta desain grafis.",
+      "Mengembangkan proyek sistem informasi sebagai penerapan keterampilan analisis, perancangan, dan pengembangan aplikasi.",
+    ],
+    tags: ["Web Development", "Database", "Software Engineering"],
+  },
+];
+
+const organizations = [
+  {
+    period: "2023 – 2024",
+    role: "Staff Divisi Komunikasi dan Informasi (Kominfo)",
+    organization: "Himpunan Mahasiswa Teknik Informatika – Atma Luhur",
+    bullets: [
+      "Berpartisipasi dalam kegiatan komunikasi dan penyebaran informasi organisasi.",
+      "Mendukung publikasi informasi kegiatan kepada mahasiswa.",
+    ],
+  },
+  {
+    period: "2025 – 2026",
+    role: "Staff Divisi Hubungan Masyarakat (Humas)",
+    organization: "Himpunan Mahasiswa Teknik Informatika – Atma Luhur",
+    bullets: [
+      "Mendukung komunikasi dan koordinasi antara organisasi dengan pihak terkait.",
+      "Berkontribusi dalam penyampaian informasi dan pelaksanaan kegiatan organisasi.",
+    ],
+  },
+  {
+    period: "2023 – 2024",
+    role: "Anggota",
+    organization: "Atma Luhur Esport Club",
+    bullets: [
+      "Berpartisipasi dalam kegiatan dan aktivitas komunitas esports kampus.",
+      "Menjadi panitia turnamen Mobile Legends dalam rangka Dies Natalis kampus tahun 2023.",
+    ],
+  },
+];
+
+const certificates = [
+  {
+    name: "AI Career Readiness Training",
+    organizer: "ASEAN Foundation, didukung LinkedIn",
+    period: "Oktober 2026",
+    image: "/images/certificates/ai-career-readiness.png",
+  },
+  {
+    name: "Exploring Golang: Wonders and Opportunities",
+    organizer: "Harisenin.com",
+    period: "Desember 2023",
+    image: "/images/certificates/coding-camp-golang.png",
+  },
+  {
+    name: "Software Engineering",
+    organizer: "RevoU",
+    period: "Desember 2023",
+    image: "/images/certificates/software-engineering.png",
+  },
+  {
+    name: "Front End Developer",
+    organizer: "Dibimbing.id",
+    period: "November 2023",
+    image: "/images/certificates/frontend-developer.png",
+  },
+  {
+    name: "Coding Camp Laravel Class “Coding for Beginner”",
+    organizer: "Harisenin.com",
+    period: "April 2023",
+    image: "/images/certificates/laravel-coding-camp.png",
+  },
+];
+
+const achievements = [
+  {
+    title: "Pencatatan Hak Cipta Program Komputer",
+    subtitle: "Sistem Informasi SLB YPAC Pangkalpinang Berbasis PWA",
+    period: "2026",
+    description:
+      "Terdaftar sebagai pencipta dan pemegang hak cipta bersama tim atas karya program komputer Sistem Informasi SLB YPAC Pangkalpinang Berbasis Progressive Web App (PWA).",
+  },
+  {
+    title: "Beasiswa Prestasi Akademik",
+    subtitle: "Provinsi Kepulauan Bangka Belitung",
+    period: "2023 – 2024",
+    description:
+      "Menerima beasiswa prestasi akademik selama dua tahun berturut-turut, dengan raihan IPK 4,00 pada 2023 dan 3,93 pada 2024.",
+  },
+];
+---
+
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="description"
+      content="Portofolio Rangga, Web Developer yang membangun aplikasi web modern dan bermanfaat."
+    />
+    <title>Rangga | Web Developer</title>
+
+    <!-- Script Anti-FOUC (Cek Tema Awal) -->
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+  </head>
+
+  <body
+    class="bg-white font-sans text-neutral-900 antialiased overflow-x-hidden dark:bg-[#030712] dark:text-neutral-100"
+  >
+    <!-- Efek Background Meteor -->
+    <Meteors number={25} />
+    <!-- Navbar Sticky -->
+    <header
+      class="sticky top-0 z-40 border-b border-neutral-100 bg-white/95 backdrop-blur-md dark:border-neutral-800/60 dark:bg-[#030712]/90"
+    >
+      <div
+        class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8 lg:px-10"
+      >
+        <a
+          href="#home"
+          class="shrink-0 text-lg font-extrabold tracking-tight text-neutral-950 dark:text-white"
+          aria-label="Rangga, kembali ke halaman utama"
+        >
+          ◢ Rangga
+        </a>
+
+        <!-- Navigasi Utama dengan Indikator Aktif (Pill Style) -->
+        <nav
+          id="nav-menu"
+          class="hidden items-center gap-1.5 text-sm text-neutral-600 dark:text-neutral-400 md:flex"
+        >
+          <a
+            class="nav-link rounded-xl px-3.5 py-2 font-medium transition-all hover:bg-neutral-100 hover:text-neutral-950 dark:hover:bg-neutral-800/80 dark:hover:text-white"
+            href="#home">Home</a
+          >
+          <a
+            class="nav-link rounded-xl px-3.5 py-2 font-medium transition-all hover:bg-neutral-100 hover:text-neutral-950 dark:hover:bg-neutral-800/80 dark:hover:text-white"
+            href="#about">About</a
+          >
+          <a
+            class="nav-link rounded-xl px-3.5 py-2 font-medium transition-all hover:bg-neutral-100 hover:text-neutral-950 dark:hover:bg-neutral-800/80 dark:hover:text-white"
+            href="#skills">Skills</a
+          >
+          <a
+            class="nav-link rounded-xl px-3.5 py-2 font-medium transition-all hover:bg-neutral-100 hover:text-neutral-950 dark:hover:bg-neutral-800/80 dark:hover:text-white"
+            href="#projects">Projects</a
+          >
+          <a
+            class="nav-link rounded-xl px-3.5 py-2 font-medium transition-all hover:bg-neutral-100 hover:text-neutral-950 dark:hover:bg-neutral-800/80 dark:hover:text-white"
+            href="#experience">Experience</a
+          >
+          <a
+            class="nav-link rounded-xl px-3.5 py-2 font-medium transition-all hover:bg-neutral-100 hover:text-neutral-950 dark:hover:bg-neutral-800/80 dark:hover:text-white"
+            href="#contact">Contact</a
+          >
+
+          <span
+            class="mx-1 text-neutral-300 dark:text-neutral-700"
+            aria-hidden="true">|</span
+          >
+
+          <!-- Tombol Switch Dark Mode -->
+          <button
+            id="theme-toggle"
+            type="button"
+            aria-label="Toggle theme"
+            class="relative flex h-9 w-9 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-700 transition-all hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:border-neutral-700 dark:hover:bg-neutral-800"
+          >
+            <span class="icon-moon">
+              <Icon name="lucide:moon" class="h-4 w-4 text-neutral-700" />
+            </span>
+            <span class="icon-sun">
+              <Icon name="lucide:sun" class="h-4 w-4 text-amber-400" />
+            </span>
+          </button>
+        </nav>
+
+        <div class="flex items-center gap-2 md:hidden">
+          <button
+            id="theme-toggle-mobile"
+            type="button"
+            aria-label="Ganti tema"
+            class="flex h-10 w-10 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-700 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200"
+          >
+            <span class="icon-moon"
+              ><Icon name="lucide:moon" class="h-4 w-4" /></span
+            >
+            <span class="icon-sun"
+              ><Icon name="lucide:sun" class="h-4 w-4 text-amber-400" /></span
+            >
+          </button>
+          <button
+            id="mobile-menu-toggle"
+            type="button"
+            aria-label="Buka menu navigasi"
+            aria-expanded="false"
+            aria-controls="mobile-nav-menu"
+            class="flex h-10 w-10 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-800 transition hover:bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900 dark:text-white dark:hover:bg-neutral-800"
+          >
+            <Icon name="lucide:menu" class="mobile-menu-open h-5 w-5" />
+            <Icon name="lucide:x" class="mobile-menu-close hidden h-5 w-5" />
+          </button>
+        </div>
+      </div>
+
+      <nav
+        id="mobile-nav-menu"
+        aria-label="Navigasi mobile"
+        class="mobile-nav-panel hidden border-t border-neutral-200 bg-white px-5 pb-5 pt-3 shadow-lg dark:border-neutral-800 dark:bg-[#080d18] md:hidden"
+      >
+        <div class="mx-auto grid max-w-7xl grid-cols-2 gap-2">
+          {
+            [
+              ["Home", "#home"],
+              ["About", "#about"],
+              ["Skills", "#skills"],
+              ["Projects", "#projects"],
+              ["Experience & Education", "#experience"],
+              ["Organization", "#organization"],
+              ["Certificates", "#certificates"],
+              ["Achievements", "#achievements"],
+              ["Contact", "#contact"],
+            ].map(([label, href]) => (
+              <a
+                href={href}
+                class="nav-link mobile-nav-link min-h-11 rounded-xl border border-neutral-200/80 bg-neutral-50/80 px-3 py-2.5 text-xs font-semibold text-neutral-700 transition hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 dark:border-neutral-800 dark:bg-neutral-900/70 dark:text-neutral-300 dark:hover:border-blue-900 dark:hover:bg-blue-950/40 dark:hover:text-blue-300 sm:text-sm"
+              >
+                {label}
+                <Icon name="lucide:arrow-up-right" class="h-4 w-4 opacity-50" />
+              </a>
+            ))
+          }
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 1. Hero Section -->
+      <section
+        id="home"
+        class="relative mx-auto grid max-w-7xl items-center gap-5 px-5 pb-10 pt-6 sm:px-8 sm:gap-7 md:min-h-[620px] md:grid-cols-2 md:gap-10 md:py-12 lg:px-10 lg:py-14 overflow-hidden"
+      >
+        <!-- Ambient Blue Glow di Dark Mode -->
+        <div
+          class="pointer-events-none absolute -top-12 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-600/10 blur-3xl dark:block hidden"
+        >
+        </div>
+
+        <div class="max-w-xl z-10">
+          <p
+            class="mb-6 flex items-center gap-2.5 text-sm font-medium text-neutral-600 dark:text-neutral-400"
+          >
+            <span
+              class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"
+              aria-hidden="true"></span>
+            Available for opportunities
+          </p>
+
+          <h1
+            class="text-4xl font-bold leading-[1.08] tracking-[-0.045em] text-neutral-950 dark:text-white sm:text-5xl lg:text-6xl"
+          >
+            Building digital experiences that
+            <span class="text-blue-600 dark:text-blue-400"> matter.</span>
+          </h1>
+
+          <p
+            class="mt-6 max-w-lg text-base leading-7 text-neutral-600 dark:text-neutral-400 sm:text-lg sm:leading-8"
+          >
+            I'm a Web Developer focused on building modern, scalable, and
+            user-friendly web applications. I enjoy turning ideas into real
+            products that solve problems.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#projects"
+              class="inline-flex items-center justify-center gap-2 rounded-xl bg-neutral-950 px-6 py-4 text-sm font-semibold !text-white transition-colors hover:bg-neutral-800 dark:bg-white dark:!text-neutral-950 dark:hover:bg-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            >
+              View My Work
+              <Icon name="lucide:arrow-right" class="h-4 w-4" />
+            </a>
+
+            <a
+              href="/cv-rangga.pdf"
+              class="inline-flex items-center justify-center gap-2 rounded-xl border border-neutral-300 bg-white px-6 py-4 text-sm font-semibold !text-neutral-900 transition-colors hover:border-neutral-950 hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:!text-neutral-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800"
+            >
+              Download CV
+              <Icon name="lucide:download" class="h-4 w-4" />
+            </a>
+          </div>
+
+          <!-- Social Links -->
+          <div class="mt-8 flex items-center gap-3">
+            <a
+              href="https://github.com/ranggasy"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              class="flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-800 transition-all hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-neutral-700 dark:hover:bg-neutral-800"
+            >
+              <Icon name="simple-icons:github" class="h-5 w-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/rangga-syafutra-dewa-08a863270/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              class="flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-800 transition-all hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-neutral-700 dark:hover:bg-neutral-800"
+            >
+              <Icon name="simple-icons:linkedin" class="h-5 w-5" />
+            </a>
+            <a
+              href="https://www.instagram.com/ranggasyafutraa/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              class="flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-800 transition-all hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-neutral-700 dark:hover:bg-neutral-800"
+            >
+              <Icon name="simple-icons:instagram" class="h-5 w-5" />
+            </a>
+            <a
+              href="mailto:rasyadpsn@gmail.com"
+              aria-label="Email"
+              class="flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-800 transition-all hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-neutral-700 dark:hover:bg-neutral-800"
+            >
+              <Icon name="lucide:mail" class="h-5 w-5" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Wrapper Lanyard -->
+        <div
+          class="hero-lanyard relative z-10 mt-0 flex min-w-0 items-start justify-center overflow-visible md:mt-0 md:min-h-[520px] md:items-center md:justify-self-end"
+        >
+          <Lanyard />
+        </div>
+      </section>
+
+      <!-- 2. Infinite Marquee (Tech Ticker Animasi Berjalan) -->
+      <section
+        class="border-y border-neutral-200 bg-neutral-50/70 py-6 overflow-hidden dark:border-neutral-800/80 dark:bg-neutral-900/30"
+      >
+        <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <div class="relative w-full overflow-hidden">
+            <!-- Fade Overlay Kiri-Kanan -->
+            <div
+              class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#fafafa] dark:from-[#030712] to-transparent sm:w-24"
+            >
+            </div>
+            <div
+              class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#fafafa] dark:from-[#030712] to-transparent sm:w-24"
+            >
+            </div>
+
+            <div class="flex gap-3 animate-marquee py-1">
+              {
+                [...marqueeTechs, ...marqueeTechs].map((tech) => (
+                  <span class="inline-flex shrink-0 items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-800 shadow-xs dark:border-neutral-800 dark:bg-neutral-900/90 dark:text-neutral-200">
+                    <Icon
+                      name={tech.icon}
+                      class={`h-4 w-4 shrink-0 ${tech.color}`}
+                    />
+                    {tech.name}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. About Section -->
+      <section
+        id="about"
+        class="border-b border-neutral-200 bg-neutral-50 dark:border-neutral-800/80 dark:bg-neutral-900/20"
+      >
+        <div
+          class="mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:px-8 md:grid-cols-2 md:gap-12 md:py-20 lg:px-10"
+        >
+          <div>
+            <p
+              class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400"
+            >
+              01 . &gt;_ ABOUT ME
+            </p>
+            <h2
+              class="max-w-lg text-3xl font-bold leading-tight tracking-tight text-neutral-950 dark:text-white sm:text-4xl"
+            >
+              Turning ideas into useful web experiences.
+            </h2>
+          </div>
+
+          <div>
+            <p
+              class="text-base leading-8 text-neutral-700 dark:text-neutral-300"
+            >
+              Lulusan S1 Teknik Informatika dari Institut Sains dan Bisnis Atma
+              Luhur dengan IPK 3,92/4,00. Memiliki pengalaman mengembangkan
+              sistem informasi berbasis PWA menggunakan CodeIgniter 4 dan MySQL,
+              serta pemahaman dalam pengembangan aplikasi web, pengelolaan basis
+              data, dan debugging. Terbiasa memanfaatkan AI coding tools untuk
+              mendukung proses pengembangan dan pemecahan masalah teknis.
+            </p>
+
+            <div class="mt-8 grid grid-cols-2 gap-5">
+              <div class="border-l-2 border-blue-600 dark:border-blue-500 pl-4">
+                <p
+                  class="text-2xl font-bold tracking-tight text-neutral-950 dark:text-white"
+                >
+                  3.92<span class="text-neutral-500 dark:text-neutral-400"
+                    >/4.00</span
+                  >
+                </p>
+                <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+                  GPA
+                </p>
+              </div>
+
+              <div class="border-l-2 border-blue-600 dark:border-blue-500 pl-4">
+                <p
+                  class="text-2xl font-bold tracking-tight text-neutral-950 dark:text-white"
+                >
+                  05
+                </p>
+                <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+                  Featured project
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Skills & Tech Stack Section (Grid Terkelompok Detail) -->
+      <section
+        id="skills"
+        class="border-b border-neutral-200 bg-neutral-50/50 py-16 sm:py-20 dark:border-neutral-800/80 dark:bg-neutral-950/40"
+      >
+        <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <div class="mb-10">
+            <p
+              class="mb-3 text-xs font-bold tracking-[0.18em] text-neutral-500 dark:text-neutral-400 uppercase"
+            >
+              02 . &gt;_ SKILLS & TECH STACK
+            </p>
+            <h2
+              class="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white sm:text-4xl"
+            >
+              Keahlian & Teknologi
+            </h2>
+            <p
+              class="mt-3 max-w-2xl text-base text-neutral-600 dark:text-neutral-400"
+            >
+              Bahasa pemrograman, framework, database, dan tools yang tercantum
+              dalam kompetensi profesional saya.
+            </p>
+          </div>
+
+          <div
+            class="divide-y divide-neutral-200/80 border-y border-neutral-200/80 dark:divide-neutral-800/80 dark:border-neutral-800/80"
+          >
+            {
+              techCategories.map((group) => (
+                <div class="grid gap-4 py-6 sm:grid-cols-[220px_1fr] sm:items-center sm:gap-8">
+                  <div class="flex items-center gap-2 text-xs font-bold tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
+                    <span
+                      class="h-1.5 w-1.5 rounded-full bg-neutral-400 dark:bg-neutral-500"
+                      aria-hidden="true"
+                    />
+                    {group.category}
+                  </div>
+
+                  <div class="flex flex-wrap gap-2.5">
+                    {group.items.map((tech) => (
+                      <span class="inline-flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-3.5 py-2 text-sm font-medium text-neutral-800 shadow-xs transition-all hover:border-neutral-400 hover:scale-[1.02] dark:border-neutral-800 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-neutral-700">
+                        <Icon
+                          name={tech.icon}
+                          class={`h-4 w-4 shrink-0 ${tech.color}`}
+                        />
+                        {tech.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <div class="mt-8">
+            <h3 class="mb-3 text-sm font-bold text-neutral-900 dark:text-white">
+              Soft Skills
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {
+                softSkills.map((skill) => (
+                  <span class="rounded-full border border-neutral-200 bg-white px-3.5 py-2 text-sm text-neutral-700 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300">
+                    {skill}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Featured Projects -->
+      <section
+        id="projects"
+        class="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24"
+      >
+        <p
+          class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400"
+        >
+          03 . &gt;_ FEATURED PROJECTS
+        </p>
+
+        <div
+          class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
+        >
+          <h2
+            class="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white sm:text-4xl"
+          >
+            Selected work.
+          </h2>
+          <p
+            class="max-w-sm text-sm leading-6 text-neutral-600 dark:text-neutral-400"
+          >
+            A featured project developed to solve a real information management
+            need.
+          </p>
+        </div>
+
+        <div class="mt-9 grid gap-5 sm:grid-cols-2 xl:grid-cols-2">
+          {
+            projects.map((project) => (
+              <article class="group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white transition duration-200 hover:-translate-y-1 hover:border-neutral-300 hover:shadow-xl dark:border-neutral-800/80 dark:bg-neutral-900/50 dark:hover:border-neutral-700">
+                <button
+                  type="button"
+                  class="project-image-preview group/image relative block w-full overflow-hidden text-left focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-blue-500"
+                  data-preview-src={project.image}
+                  data-preview-alt={`Preview tampilan website ${project.name}`}
+                  aria-label={`Perbesar gambar ${project.name}`}
+                >
+                  <div
+                    class={`${project.name === "VexoraPOS" ? "aspect-[4/2]" : "aspect-[16/9]"} overflow-hidden border-b border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-950`}
+                  >
+                    <img
+                      src={project.image}
+                      alt={`Tampilan website ${project.name}`}
+                      loading="lazy"
+                      class="h-full w-full object-cover object-top transition-transform duration-500 group-hover/image:scale-[1.02]"
+                    />
+                  </div>
+                  <span class="pointer-events-none absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-lg bg-black/65 px-2.5 py-1.5 text-[11px] font-medium text-white opacity-0 backdrop-blur-sm transition-opacity group-hover/image:opacity-100 group-focus-visible/image:opacity-100">
+                    <Icon name="lucide:zoom-in" class="h-3.5 w-3.5" />
+                    Klik untuk preview
+                  </span>
+                </button>
+                <div class="flex flex-1 flex-col p-5 sm:p-6">
+                  <div class="flex items-center justify-between gap-3">
+                    <span class="text-xs font-semibold tracking-[0.14em] text-neutral-500 dark:text-neutral-400 uppercase">
+                      {project.type}
+                    </span>
+                    <span class="text-sm font-medium text-neutral-400 dark:text-neutral-500">
+                      {project.number}
+                    </span>
+                  </div>
+
+                  <h3 class="mt-5 text-xl font-bold tracking-tight text-neutral-950 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                    {project.name}
+                  </h3>
+
+                  <p class="mt-3 text-sm leading-7 text-neutral-600 dark:text-neutral-400">
+                    {project.description}
+                  </p>
+
+                  <div class="mt-6 border-t border-neutral-200 dark:border-neutral-800 pt-4">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      {project.stack.map((item) => (
+                        <span class="rounded-md bg-neutral-100 dark:bg-neutral-800 px-2.5 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 pt-2">
+                      {project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          class="inline-flex items-center gap-2 rounded-lg bg-neutral-950 px-3.5 py-2.5 text-xs font-semibold text-white transition hover:bg-blue-700 dark:bg-white dark:text-neutral-950 dark:hover:bg-blue-200"
+                        >
+                          Live Demo
+                          <Icon
+                            name="lucide:arrow-up-right"
+                            class="h-3.5 w-3.5"
+                          />
+                        </a>
+                      )}
+                      {project.githubUrl ? (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          class="inline-flex items-center gap-2 rounded-lg border border-neutral-300 px-3.5 py-2.5 text-xs font-semibold text-neutral-700 transition hover:border-neutral-500 dark:border-neutral-700 dark:text-neutral-200 dark:hover:border-neutral-500"
+                        >
+                          <Icon
+                            name="simple-icons:github"
+                            class="h-3.5 w-3.5"
+                          />
+                          GitHub
+                        </a>
+                      ) : (
+                        <span
+                          aria-disabled="true"
+                          title="Link repository belum ditambahkan"
+                          class="inline-flex cursor-not-allowed items-center gap-2 rounded-lg border border-neutral-200 px-3.5 py-2.5 text-xs font-medium text-neutral-400 dark:border-neutral-800 dark:text-neutral-500"
+                        >
+                          <Icon
+                            name="simple-icons:github"
+                            class="h-3.5 w-3.5"
+                          />
+                          GitHub
+                          <span class="text-[10px] font-normal">Soon</span>
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+
+        <dialog
+          id="project-image-dialog"
+          class="fixed inset-0 m-auto max-h-[92vh] w-[min(96vw,1400px)] max-w-none overflow-hidden rounded-2xl border border-neutral-200 bg-white p-0 text-neutral-900 shadow-2xl backdrop:bg-black/80 dark:border-neutral-700 dark:bg-neutral-950 dark:text-white"
+          aria-label="Preview gambar project"
+        >
+          <div
+            class="flex items-center justify-between gap-4 border-b border-neutral-200 px-4 py-3 dark:border-neutral-800"
+          >
+            <p
+              id="project-image-caption"
+              class="truncate text-sm font-semibold"
+            >
+              Preview project
+            </p>
+            <button
+              type="button"
+              id="close-project-image-dialog"
+              aria-label="Tutup preview"
+              class="grid h-9 w-9 shrink-0 place-items-center rounded-lg transition hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            >
+              <Icon name="lucide:x" class="h-5 w-5" />
+            </button>
+          </div>
+          <div
+            class="grid max-h-[calc(92vh-58px)] place-items-center overflow-auto bg-neutral-100 p-2 dark:bg-black sm:p-4"
+          >
+            <img
+              id="project-image-dialog-img"
+              src=""
+              alt=""
+              class="max-h-[calc(92vh-90px)] max-w-full rounded-lg object-contain"
+            />
+          </div>
+        </dialog>
+      </section>
+
+      <!-- 6. Experience & Education -->
+      <section
+        id="experience"
+        class="border-t border-neutral-200 dark:border-neutral-800/80 bg-neutral-50/30 dark:bg-neutral-900/10 py-16 sm:py-20"
+      >
+        <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <p
+            class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400"
+          >
+            04 . &gt;_ EXPERIENCE & EDUCATION
+          </p>
+          <h2
+            class="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white sm:text-4xl mb-10"
+          >
+            Perjalanan Karir & Akademik
+          </h2>
+
+          <div class="grid gap-12 lg:grid-cols-2">
+            <!-- Pengalaman Kerja -->
+            <div>
+              <h3
+                class="text-lg font-bold text-neutral-950 dark:text-white mb-6 flex items-center gap-2"
+              >
+                <Icon
+                  name="lucide:briefcase"
+                  class="h-5 w-5 text-blue-600 dark:text-blue-400"
+                />
+                Pengalaman Kerja
+              </h3>
+
+              <div class="flex h-full flex-col gap-6">
+                {
+                  experiences.map((exp) => (
+                    <article class="flex h-full flex-1 flex-col rounded-2xl border border-neutral-200/80 bg-white p-6 shadow-xs dark:border-neutral-800/80 dark:bg-neutral-900/60">
+                      <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span class="text-xs font-semibold text-neutral-500 dark:text-neutral-400">
+                          {exp.period}
+                        </span>
+                        <span class="rounded-full bg-emerald-50 dark:bg-emerald-950/50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">
+                          {exp.status}
+                        </span>
+                      </div>
+
+                      <div class="mb-4 flex items-start gap-3.5">
+                        <div class="grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-xl border border-neutral-200 bg-white p-1.5 dark:border-neutral-700 dark:bg-neutral-800">
+                          <img
+                            src="/images/logo-humas.png"
+                            alt="Logo Polda Kepulauan Bangka Belitung"
+                            class="h-full w-full object-contain"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'"
+                          />
+                          <span class="hidden h-full w-full place-items-center rounded-lg bg-neutral-100 text-center text-[9px] font-extrabold leading-tight text-neutral-700 dark:bg-neutral-700 dark:text-neutral-100">
+                            POLDA
+                            <br />
+                            BABEL
+                          </span>
+                        </div>
+                        <div class="min-w-0 pt-0.5">
+                          <h4 class="text-lg font-bold leading-snug text-neutral-950 dark:text-white">
+                            {exp.role}
+                          </h4>
+                          <p class="mt-1 text-sm font-medium leading-5 text-neutral-600 dark:text-neutral-400">
+                            {exp.organization}
+                          </p>
+                        </div>
+                      </div>
+
+                      <ul class="mb-4 space-y-2 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
+                        {exp.bullets.map((bullet) => (
+                          <li class="flex items-start gap-2">
+                            <span class="text-blue-600 dark:text-blue-400 mt-1">
+                              •
+                            </span>
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div class="mt-3 rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-950/50">
+                        <p class="text-[11px] font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                          Judul Laporan Magang
+                        </p>
+                        <p class="mt-2 text-sm font-semibold leading-6 text-neutral-900 dark:text-white">
+                          Transformasi Publikasi Digital melalui Implementasi
+                          Kreatif Editing Video pada Bidang Humas Polda
+                          Kepulauan Bangka Belitung
+                        </p>
+                        <button
+                          type="button"
+                          id="open-internship-gallery"
+                          class="mt-4 inline-flex items-center gap-2 rounded-xl bg-neutral-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-neutral-700 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200"
+                        >
+                          <Icon name="lucide:images" class="h-4 w-4" /> Lihat
+                          Foto Magang
+                        </button>
+                      </div>
+                      <div class="mt-4 flex flex-wrap gap-2 border-t border-neutral-100 pt-3 dark:border-neutral-800">
+                        {exp.tags.map((tag) => (
+                          <span class="rounded-md bg-neutral-100 dark:bg-neutral-800 px-2.5 py-1 text-xs font-medium text-neutral-600 dark:text-neutral-300">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </article>
+                  ))
+                }
+              </div>
+            </div>
+
+            <!-- Pendidikan -->
+            <div>
+              <h3
+                class="text-lg font-bold text-neutral-950 dark:text-white mb-6 flex items-center gap-2"
+              >
+                <Icon
+                  name="lucide:graduation-cap"
+                  class="h-5 w-5 text-blue-600 dark:text-blue-400"
+                />
+                Latar Belakang Pendidikan
+              </h3>
+
+              <div class="flex h-full flex-col gap-6">
+                {
+                  education.map((edu) => (
+                    <article class="flex h-full flex-1 flex-col rounded-2xl border border-neutral-200/80 bg-white p-6 shadow-xs dark:border-neutral-800/80 dark:bg-neutral-900/60">
+                      <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span class="text-xs font-semibold text-neutral-500 dark:text-neutral-400">
+                          {edu.period}
+                        </span>
+                        <span class="rounded-full bg-blue-50 dark:bg-blue-950/50 px-2.5 py-0.5 text-xs font-semibold text-blue-700 dark:text-blue-400 border border-blue-200/60 dark:border-blue-800/60">
+                          {edu.status}
+                        </span>
+                      </div>
+
+                      <div class="mb-4 flex items-start gap-3.5">
+                        <div class="grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-xl border border-neutral-200 bg-white p-1.5 dark:border-neutral-700 dark:bg-neutral-800">
+                          <img
+                            src="/images/logo-atmaluhur.png"
+                            alt="Logo Institut Sains dan Bisnis Atma Luhur"
+                            class="h-full w-full object-contain"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'"
+                          />
+                          <span class="hidden h-full w-full place-items-center rounded-lg bg-neutral-100 text-center text-[9px] font-extrabold leading-tight text-neutral-700 dark:bg-neutral-700 dark:text-neutral-100">
+                            ATMA
+                            <br />
+                            LUHUR
+                          </span>
+                        </div>
+                        <div class="min-w-0 pt-0.5">
+                          <h4 class="text-lg font-bold leading-snug text-neutral-950 dark:text-white">
+                            {edu.degree}
+                          </h4>
+                          <p class="mt-1 text-sm font-medium leading-5 text-neutral-600 dark:text-neutral-400">
+                            {edu.institution}
+                          </p>
+                        </div>
+                      </div>
+
+                      <ul class="mb-4 space-y-2 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
+                        {edu.bullets.map((bullet) => (
+                          <li class="flex items-start gap-2">
+                            <span class="text-blue-600 dark:text-blue-400 mt-1">
+                              •
+                            </span>
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div class="mt-3 rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-950/50">
+                        <p class="text-[11px] font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                          Judul Tugas Akhir
+                        </p>
+                        <p class="mt-2 text-sm font-semibold leading-6 text-neutral-900 dark:text-white">
+                          Rancang Bangun dan Implementasi Progressive Web App
+                          (PWA) sebagai Pusat Layanan Informasi Interaktif dan
+                          Aksesibel pada SLB YPAC Pangkalpinang
+                        </p>
+                        <button
+                          type="button"
+                          id="open-final-project-gallery"
+                          class="mt-4 inline-flex items-center gap-2 rounded-xl bg-neutral-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-neutral-700 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200"
+                        >
+                          <Icon name="lucide:images" class="h-4 w-4" /> Lihat
+                          Bukti Tugas Akhir
+                        </button>
+                      </div>
+                      <div class="mt-4 flex flex-wrap gap-2 border-t border-neutral-100 pt-3 dark:border-neutral-800">
+                        {edu.tags.map((tag) => (
+                          <span class="rounded-md bg-neutral-100 dark:bg-neutral-800 px-2.5 py-1 text-xs font-medium text-neutral-600 dark:text-neutral-300">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </article>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        <dialog
+          id="internship-gallery"
+          class="fixed inset-0 m-auto max-h-[90vh] w-[min(92vw,960px)] max-w-none overflow-y-auto rounded-2xl border border-neutral-200 bg-white p-0 text-neutral-900 shadow-2xl backdrop:bg-black/75 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white"
+        >
+          <div
+            class="sticky top-0 z-10 flex items-center justify-between border-b border-neutral-200 bg-white/95 p-5 backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/95"
+          >
+            <div>
+              <h3 class="font-bold">Dokumentasi Magang</h3>
+              <p class="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                Humas Polda Kepulauan Bangka Belitung
+              </p>
+            </div>
+            <button
+              type="button"
+              id="close-internship-gallery"
+              aria-label="Tutup galeri"
+              class="grid h-9 w-9 shrink-0 place-items-center rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800"
+              ><Icon name="lucide:x" class="h-5 w-5" /></button
+            >
+          </div>
+          <div class="grid gap-4 p-5 sm:grid-cols-2">
+            <figure
+              class="overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-800"
+            >
+              <img
+                src="/images/internship/magang-1.jpg"
+                alt="Dokumentasi magang 1"
+                loading="lazy"
+                class="aspect-[4/3] w-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'"
+              />
+              <div
+                class="hidden aspect-[4/3] place-items-center p-6 text-center text-sm text-neutral-500 dark:text-neutral-400"
+              >
+                <span
+                  ><Icon name="lucide:image" class="mx-auto mb-2 h-8 w-8" />Foto
+                  magang 1 belum diunggah</span
+                >
+              </div>
+              <figcaption
+                class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
+              >
+                Dokumentasi 1
+              </figcaption>
+            </figure>
+            <figure
+              class="overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-800"
+            >
+              <img
+                src="/images/internship/magang-2.png"
+                alt="Dokumentasi magang 2"
+                loading="lazy"
+                class="aspect-[4/3] w-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'"
+              />
+              <div
+                class="hidden aspect-[4/3] place-items-center p-6 text-center text-sm text-neutral-500 dark:text-neutral-400"
+              >
+                <span
+                  ><Icon name="lucide:image" class="mx-auto mb-2 h-8 w-8" />Foto
+                  magang 2 belum diunggah</span
+                >
+              </div>
+              <figcaption
+                class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
+              >
+                Dokumentasi 2
+              </figcaption>
+            </figure>
+          </div>
+        </dialog>
+
+        <dialog
+          id="final-project-gallery"
+          class="fixed inset-0 m-auto max-h-[90vh] w-[min(92vw,960px)] max-w-none overflow-y-auto rounded-2xl border border-neutral-200 bg-white p-0 text-neutral-900 shadow-2xl backdrop:bg-black/75 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white"
+        >
+          <div
+            class="sticky top-0 z-10 flex items-center justify-between border-b border-neutral-200 bg-white/95 p-5 backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/95"
+          >
+            <div>
+              <h3 class="font-bold">Bukti Dokumentasi Tugas Akhir</h3>
+              <p class="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                Sistem Informasi SLB YPAC Pangkalpinang berbasis PWA
+              </p>
+            </div>
+            <button
+              type="button"
+              id="close-final-project-gallery"
+              aria-label="Tutup galeri"
+              class="grid h-9 w-9 shrink-0 place-items-center rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800"
+              ><Icon name="lucide:x" class="h-5 w-5" /></button
+            >
+          </div>
+          <div class="grid gap-4 p-5 sm:grid-cols-2">
+            <figure
+              class="overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-800"
+            >
+              <img
+                src="/images/final-project/bukti-1.jpeg"
+                alt="Bukti dokumentasi tugas akhir 1"
+                loading="lazy"
+                class="aspect-[4/3] w-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'"
+              />
+              <div
+                class="hidden aspect-[4/3] place-items-center p-6 text-center text-sm text-neutral-500 dark:text-neutral-400"
+              >
+                <span
+                  ><Icon
+                    name="lucide:image"
+                    class="mx-auto mb-2 h-8 w-8"
+                  />Bukti dokumentasi tugas akhir 1 belum diunggah</span
+                >
+              </div>
+              <figcaption
+                class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
+              >
+                Bukti 1
+              </figcaption>
+            </figure>
+            <figure
+              class="overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-800"
+            >
+              <img
+                src="/images/final-project/bukti-2.png"
+                alt="Bukti dokumentasi tugas akhir 2"
+                loading="lazy"
+                class="aspect-[4/3] w-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'"
+              />
+              <div
+                class="hidden aspect-[4/3] place-items-center p-6 text-center text-sm text-neutral-500 dark:text-neutral-400"
+              >
+                <span
+                  ><Icon
+                    name="lucide:image"
+                    class="mx-auto mb-2 h-8 w-8"
+                  />Bukti dokumentasi tugas akhir 2 belum diunggah</span
+                >
+              </div>
+              <figcaption
+                class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
+              >
+                Bukti 2
+              </figcaption>
+            </figure>
+          </div>
+        </dialog>
+      </section>
+
+      <!-- 7. Organization & Activities -->
+      <section
+        id="organization"
+        class="border-t border-neutral-200 bg-neutral-50/50 py-16 dark:border-neutral-800/80 dark:bg-neutral-900/20 sm:py-20"
+      >
+        <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <p
+            class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400"
+          >
+            05 . &gt;_ ORGANIZATION & ACTIVITIES
+          </p>
+          <h2
+            class="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white sm:text-4xl"
+          >
+            Organisasi & Aktivitas
+          </h2>
+          <p
+            class="mt-3 max-w-2xl text-sm leading-7 text-neutral-600 dark:text-neutral-400"
+          >
+            Pengalaman berorganisasi, komunikasi, publikasi, dan keterlibatan
+            dalam kegiatan kampus.
+          </p>
+          <div class="mt-9 grid gap-5 md:grid-cols-2">
+            {
+              organizations.map((item) => (
+                <article class="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900/60">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <span class="text-xs font-semibold text-neutral-500 dark:text-neutral-400">
+                      {item.period}
+                    </span>
+                    <span class="rounded-full border border-neutral-200 px-2.5 py-1 text-xs font-medium text-neutral-600 dark:border-neutral-700 dark:text-neutral-300">
+                      Organization
+                    </span>
+                  </div>
+                  <h3 class="mt-4 text-lg font-bold text-neutral-950 dark:text-white">
+                    {item.role}
+                  </h3>
+                  <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+                    {item.organization}
+                  </p>
+                  <ul class="mt-4 space-y-2 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
+                    {item.bullets.map((bullet) => (
+                      <li class="flex gap-2">
+                        <span class="text-blue-600 dark:text-blue-400">•</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Certificates -->
+      <section
+        id="certificates"
+        class="border-t border-neutral-200 py-16 dark:border-neutral-800/80 sm:py-20"
+      >
+        <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <p
+            class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400"
+          >
+            06 . &gt;_ CERTIFICATES
+          </p>
+          <h2
+            class="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white sm:text-4xl"
+          >
+            Sertifikat
+          </h2>
+          <p
+            class="mt-3 max-w-2xl text-sm leading-7 text-neutral-600 dark:text-neutral-400"
+          >
+            Dokumentasi sertifikat kompetensi dan pengembangan profesional.
+          </p>
+          <div class="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {
+              certificates.map((item) => (
+                <article class="overflow-hidden rounded-2xl border border-neutral-200 bg-white transition-colors hover:border-neutral-300 dark:border-neutral-800 dark:bg-neutral-900/50 dark:hover:border-neutral-700">
+                  {item.image ? (
+                    <a
+                      href={item.image}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Lihat sertifikat ${item.name}`}
+                      class="block aspect-[4/3] overflow-hidden bg-neutral-100 dark:bg-neutral-800"
+                    >
+                      <img
+                        src={item.image}
+                        alt={`Sertifikat ${item.name}`}
+                        loading="lazy"
+                        class="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.03]"
+                      />
+                    </a>
+                  ) : (
+                    <div class="grid aspect-[4/3] place-items-center bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
+                      <Icon name="lucide:award" class="h-10 w-10" />
+                    </div>
+                  )}
+                  <div class="p-5">
+                    <div class="flex items-center justify-between gap-3">
+                      <span class="text-[11px] font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                        Certificate
+                      </span>
+                      <span class="text-right text-xs text-neutral-500 dark:text-neutral-400">
+                        {item.period}
+                      </span>
+                    </div>
+                    <h3 class="mt-3 font-bold leading-6 text-neutral-950 dark:text-white">
+                      {item.name}
+                    </h3>
+                    <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+                      {item.organizer}
+                    </p>
+                    {item.image && (
+                      <a
+                        href={item.image}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                      >
+                        Lihat sertifikat{" "}
+                        <Icon name="lucide:external-link" class="h-4 w-4" />
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. Achievements -->
+      <section
+        id="achievements"
+        class="border-t border-neutral-200 bg-neutral-50/50 py-16 dark:border-neutral-800/80 dark:bg-neutral-900/20 sm:py-20"
+      >
+        <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <p
+            class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400"
+          >
+            07 . &gt;_ ACHIEVEMENTS
+          </p>
+          <h2
+            class="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white sm:text-4xl"
+          >
+            Pencapaian
+          </h2>
+          <p
+            class="mt-3 max-w-2xl text-sm leading-7 text-neutral-600 dark:text-neutral-400"
+          >
+            Apresiasi dan pencapaian akademik selama menempuh pendidikan.
+          </p>
+          <div class="mt-9 grid gap-5 md:grid-cols-2">
+            {
+              achievements.map((item) => (
+                <article class="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900/60">
+                  <div class="flex items-center justify-between gap-3">
+                    <span class="grid h-11 w-11 place-items-center rounded-xl bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300">
+                      <Icon name="lucide:medal" class="h-5 w-5" />
+                    </span>
+                    <span class="text-xs font-semibold text-neutral-500 dark:text-neutral-400">
+                      {item.period}
+                    </span>
+                  </div>
+                  <h3 class="mt-5 text-lg font-bold text-neutral-950 dark:text-white">
+                    {item.title}
+                  </h3>
+                  <p class="mt-1 text-sm font-medium text-blue-700 dark:text-blue-400">
+                    {item.subtitle}
+                  </p>
+                  <p class="mt-4 text-sm leading-7 text-neutral-600 dark:text-neutral-300">
+                    {item.description}
+                  </p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. Contact Form -->
+      <ContactForm />
+    </main>
+
+    <!-- Footer Modern 3 Kolom -->
+    <footer
+      class="border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#030712] py-12"
+    >
+      <div
+        class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10 grid gap-8 md:grid-cols-3 justify-between text-sm"
+      >
+        <div>
+          <a
+            href="#home"
+            class="text-lg font-extrabold tracking-tight text-neutral-950 dark:text-white"
+          >
+            ◢ Rangga
+          </a>
+          <p
+            class="mt-3 text-sm text-neutral-600 dark:text-neutral-400 max-w-xs"
+          >
+            Lulusan Teknik Informatika yang berfokus pada Web Development dan
+            Software Engineering.
+          </p>
+          <div
+            class="mt-4 flex items-center gap-2 text-xs font-medium text-emerald-600 dark:text-emerald-400"
+          >
+            <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"
+            ></span>
+            Available for new opportunities
+          </div>
+          <p class="mt-1 text-xs text-neutral-500 dark:text-neutral-500">
+            Pangkalpinang, Bangka Belitung, Indonesia
+          </p>
+        </div>
+
+        <div>
+          <p
+            class="font-bold uppercase tracking-wider text-xs text-neutral-900 dark:text-white mb-4"
+          >
+            Navigation
+          </p>
+          <ul class="space-y-2 text-neutral-600 dark:text-neutral-400">
+            <li>
+              <a
+                href="#home"
+                class="hover:text-neutral-950 dark:hover:text-white transition-colors"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#about"
+                class="hover:text-neutral-950 dark:hover:text-white transition-colors"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="#skills"
+                class="hover:text-neutral-950 dark:hover:text-white transition-colors"
+                >Skills</a
+              >
+            </li>
+            <li>
+              <a
+                href="#projects"
+                class="hover:text-neutral-950 dark:hover:text-white transition-colors"
+                >Projects</a
+              >
+            </li>
+            <li>
+              <a
+                href="#experience"
+                class="hover:text-neutral-950 dark:hover:text-white transition-colors"
+                >Experience</a
+              >
+            </li>
+            <li>
+              <a
+                href="#organization"
+                class="hover:text-neutral-950 dark:hover:text-white transition-colors"
+                >Organization</a
+              >
+            </li>
+            <li>
+              <a
+                href="#certificates"
+                class="hover:text-neutral-950 dark:hover:text-white transition-colors"
+                >Certificates</a
+              >
+            </li>
+            <li>
+              <a
+                href="#achievements"
+                class="hover:text-neutral-950 dark:hover:text-white transition-colors"
+                >Achievements</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p
+            class="font-bold uppercase tracking-wider text-xs text-neutral-900 dark:text-white mb-4"
+          >
+            Social Presence
+          </p>
+          <div class="flex items-center gap-3 mb-6">
+            <a
+              href="https://github.com/ranggasy"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              class="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-700"
+            >
+              <Icon name="simple-icons:github" class="h-4 w-4" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/rangga-syafutra-dewa-08a863270/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              class="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-700"
+            >
+              <Icon name="simple-icons:linkedin" class="h-4 w-4" />
+            </a>
+            <a
+              href="https://www.instagram.com/ranggasyafutraa/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              class="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-700"
+            >
+              <Icon name="simple-icons:instagram" class="h-4 w-4" />
+            </a>
+            <a
+              href="mailto:rasyadpsn@gmail.com"
+              aria-label="Email"
+              class="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-700"
+            >
+              <Icon name="lucide:mail" class="h-4 w-4" />
+            </a>
+          </div>
+          <p class="text-xs text-neutral-500 dark:text-neutral-500">
+            © 2026 Rangga. Built with Astro & Tailwind CSS.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Maskot Interaktif di Bawah Footer -->
+    <Mascot />
+
+    <style is:global>
+      /* Layout Lanyard agar tidak menabrak ticker di bawahnya */
+      .hero-lanyard {
+        width: 100%;
+        min-height: 430px;
+        align-self: stretch;
+      }
+      .hero-lanyard .lanyard-scene {
+        height: 520px;
+        max-width: 460px;
+      }
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.35rem;
+        min-width: 0;
+      }
+
+      .mobile-nav-link svg {
+        flex: 0 0 auto;
+      }
+
+      #internship-gallery,
+      #final-project-gallery {
+        max-height: min(88dvh, 820px);
+        overflow-y: auto;
+      }
+
+      #internship-gallery::backdrop,
+      #final-project-gallery::backdrop {
+        background: rgb(0 0 0 / 0.78);
+        backdrop-filter: blur(5px);
+      }
+
+      @media (max-width: 767px) {
+        body {
+          overflow-x: hidden;
+        }
+
+        header > div {
+          min-height: 64px;
+        }
+
+        #home {
+          grid-template-columns: minmax(0, 1fr);
+          row-gap: 1.25rem;
+          padding: 2.5rem 1.25rem 2.25rem;
+        }
+
+        #home h1 {
+          font-size: clamp(2.35rem, 10vw, 3.5rem);
+          line-height: 1.06;
+          overflow-wrap: anywhere;
+        }
+
+        #home .max-w-xl {
+          max-width: 100%;
+        }
+
+        #home .hero-lanyard {
+          min-height: 540px;
+          margin: 0.75rem 0 0;
+          padding-top: 0.5rem;
+          width: 100%;
+          align-items: flex-start;
+          overflow: visible;
+        }
+
+        .hero-lanyard .lanyard-scene {
+          height: 500px;
+          max-width: 340px;
+          transform: translateY(12px);
+          transform-origin: top center;
+        }
+
+        #about,
+        #skills,
+        #projects,
+        #experience,
+        #organization,
+        #certificates,
+        #achievements {
+          scroll-margin-top: 76px;
+        }
+
+        #experience > div > .grid {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 1.5rem;
+        }
+
+        #experience > div > .grid > div > h3 {
+          margin-bottom: 0.875rem;
+        }
+
+        #experience > div > .grid > div > .flex.h-full.flex-col {
+          gap: 0.875rem;
+        }
+
+        #experience article {
+          min-width: 0;
+          height: auto;
+          flex: initial;
+          padding: 1rem;
+        }
+
+        #experience article > ul {
+          flex: initial;
+          margin-bottom: 0.75rem;
+        }
+
+        #experience article > .rounded-xl.border {
+          margin-top: 0.5rem;
+        }
+
+        #experience article h4,
+        #experience article h3 {
+          overflow-wrap: anywhere;
+        }
+
+        #experience article .rounded-xl.border {
+          min-width: 0;
+        }
+
+        #certificates .grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        #organization .grid,
+        #achievements .grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        #internship-gallery,
+        #final-project-gallery {
+          width: calc(100vw - 1.5rem);
+          max-width: 560px;
+          margin: auto;
+          border-radius: 1rem;
+        }
+
+        #internship-gallery > div:last-child,
+        #final-project-gallery > div:last-child {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        #internship-gallery img,
+        #final-project-gallery img {
+          max-height: 55dvh;
+          object-fit: contain;
+        }
+
+        #contact {
+          scroll-margin-top: 76px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #home {
+          padding-inline: 1rem;
+        }
+
+        #home .hero-lanyard {
+          min-height: 530px;
+          margin-top: 0.75rem;
+        }
+
+        .hero-lanyard .lanyard-scene {
+          height: 470px;
+          max-width: 320px;
+          transform: translateY(12px);
+        }
+
+        #projects,
+        #skills,
+        #experience,
+        #organization,
+        #certificates,
+        #achievements {
+          padding-top: 3rem;
+          padding-bottom: 3rem;
+        }
+
+        #projects article,
+        #certificates article {
+          min-width: 0;
+        }
+
+        #projects h2,
+        #skills h2,
+        #experience h2,
+        #organization h2,
+        #certificates h2,
+        #achievements h2 {
+          font-size: 1.75rem;
+          line-height: 1.2;
+        }
+
+        #experience article .mb-4.flex.items-start {
+          gap: 0.75rem;
+        }
+
+        #experience article .mb-4.flex.items-start > div:first-child {
+          width: 3rem;
+          height: 3rem;
+        }
+
+        #experience article .mb-4.flex.items-start h4 {
+          font-size: 1rem;
+        }
+
+        #experience article .mb-4.flex.items-start p {
+          font-size: 0.8rem;
+        }
+
+        #internship-gallery,
+        #final-project-gallery {
+          padding: 0;
+        }
+      }
+
+      @media (max-width: 380px) {
+        #home .hero-lanyard {
+          min-height: 500px;
+        }
+
+        .hero-lanyard .lanyard-scene {
+          height: 440px;
+          max-width: 290px;
+          transform: translateY(12px);
+        }
+      }
+    </style>
+
+    <!-- Script View Transitions Smooth -->
+    <script>
+      const themeToggles = [
+        document.getElementById("theme-toggle"),
+        document.getElementById("theme-toggle-mobile"),
+      ].filter((button): button is HTMLElement => button !== null);
+
+      themeToggles.forEach((themeToggle) => {
+        themeToggle.addEventListener("click", (event) => {
+          const isDark = document.documentElement.classList.contains("dark");
+          const nextThemeIsDark = !isDark;
+
+          const toggleThemeDOM = () => {
+            document.documentElement.classList.toggle("dark", nextThemeIsDark);
+            localStorage.setItem("theme", nextThemeIsDark ? "dark" : "light");
+          };
+
+          if (
+            !("startViewTransition" in document) ||
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ) {
+            toggleThemeDOM();
+            return;
+          }
+
+          const rect = themeToggle.getBoundingClientRect();
+          const pointerEvent = event as MouseEvent;
+          const x = pointerEvent.clientX || rect.left + rect.width / 2;
+          const y = pointerEvent.clientY || rect.top + rect.height / 2;
+          const endRadius = Math.hypot(
+            Math.max(x, window.innerWidth - x),
+            Math.max(y, window.innerHeight - y),
+          );
+
+          const transition = (document as any).startViewTransition(() => {
+            toggleThemeDOM();
+          });
+
+          transition.ready.then(() => {
+            document.documentElement.animate(
+              {
+                clipPath: [
+                  `circle(0px at ${x}px ${y}px)`,
+                  `circle(${endRadius}px at ${x}px ${y}px)`,
+                ],
+              },
+              {
+                duration: 450,
+                easing: "cubic-bezier(0.25, 1, 0.5, 1)",
+                pseudoElement: "::view-transition-new(root)",
+              },
+            );
+          });
+        });
+      });
+
+      const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+      const mobileNavMenu = document.getElementById("mobile-nav-menu");
+      const mobileMenuOpenIcon =
+        mobileMenuToggle?.querySelector(".mobile-menu-open");
+      const mobileMenuCloseIcon =
+        mobileMenuToggle?.querySelector(".mobile-menu-close");
+
+      function closeMobileMenu() {
+        mobileNavMenu?.classList.add("hidden");
+        mobileMenuToggle?.setAttribute("aria-expanded", "false");
+        mobileMenuToggle?.setAttribute("aria-label", "Buka menu navigasi");
+        mobileMenuOpenIcon?.classList.remove("hidden");
+        mobileMenuCloseIcon?.classList.add("hidden");
+      }
+
+      mobileMenuToggle?.addEventListener("click", () => {
+        const isExpanded =
+          mobileMenuToggle.getAttribute("aria-expanded") === "true";
+        if (isExpanded) {
+          closeMobileMenu();
+        } else {
+          mobileNavMenu?.classList.remove("hidden");
+          mobileMenuToggle.setAttribute("aria-expanded", "true");
+          mobileMenuToggle.setAttribute("aria-label", "Tutup menu navigasi");
+          mobileMenuOpenIcon?.classList.add("hidden");
+          mobileMenuCloseIcon?.classList.remove("hidden");
+        }
+      });
+
+      mobileNavMenu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMobileMenu();
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768) closeMobileMenu();
+      });
+    </script>
+
+    <!-- Script Auto Active Navigation Link berdasarkan Scroll Position -->
+    <script>
+      function initActiveNav() {
+        const navLinks =
+          document.querySelectorAll<HTMLAnchorElement>(".nav-link");
+        const sections = document.querySelectorAll<HTMLElement>("section[id]");
+
+        if (!navLinks.length || !sections.length) return;
+
+        const activeClasses = [
+          "bg-neutral-100",
+          "text-neutral-950",
+          "font-semibold",
+          "dark:bg-neutral-800",
+          "dark:text-white",
+        ];
+
+        function setActiveLink(id: string) {
+          navLinks.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (href === `#${id}`) {
+              link.classList.add(...activeClasses);
+            } else {
+              link.classList.remove(...activeClasses);
+            }
+          });
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setActiveLink(entry.target.id);
+              }
+            });
+          },
+          {
+            rootMargin: "-25% 0px -50% 0px",
+          },
+        );
+
+        sections.forEach((section) => observer.observe(section));
+      }
+
+      document.addEventListener("DOMContentLoaded", initActiveNav);
+      initActiveNav();
+
+      const projectImageDialog = document.getElementById(
+        "project-image-dialog",
+      ) as HTMLDialogElement | null;
+      const projectImageDialogImg = document.getElementById(
+        "project-image-dialog-img",
+      ) as HTMLImageElement | null;
+      const projectImageCaption = document.getElementById(
+        "project-image-caption",
+      );
+
+      document
+        .querySelectorAll<HTMLButtonElement>(".project-image-preview")
+        .forEach((button) => {
+          button.addEventListener("click", () => {
+            const imageSrc = button.dataset.previewSrc;
+            const imageAlt =
+              button.dataset.previewAlt || "Preview gambar project";
+            if (!imageSrc || !projectImageDialog || !projectImageDialogImg)
+              return;
+
+            projectImageDialogImg.src = imageSrc;
+            projectImageDialogImg.alt = imageAlt;
+            if (projectImageCaption)
+              projectImageCaption.textContent = imageAlt.replace(
+                "Preview tampilan website ",
+                "",
+              );
+            projectImageDialog.showModal();
+          });
+        });
+
+      document
+        .getElementById("close-project-image-dialog")
+        ?.addEventListener("click", () => {
+          projectImageDialog?.close();
+        });
+
+      projectImageDialog?.addEventListener("click", (event) => {
+        if (event.target === projectImageDialog) projectImageDialog.close();
+      });
+
+      projectImageDialog?.addEventListener("close", () => {
+        if (projectImageDialogImg) projectImageDialogImg.src = "";
+      });
+
+      const internshipGallery = document.getElementById(
+        "internship-gallery",
+      ) as HTMLDialogElement | null;
+      const finalProjectGallery = document.getElementById(
+        "final-project-gallery",
+      ) as HTMLDialogElement | null;
+
+      document
+        .getElementById("open-internship-gallery")
+        ?.addEventListener("click", () => internshipGallery?.showModal());
+      document
+        .getElementById("close-internship-gallery")
+        ?.addEventListener("click", () => internshipGallery?.close());
+      internshipGallery?.addEventListener("click", (event) => {
+        if (event.target === internshipGallery) internshipGallery.close();
+      });
+
+      document
+        .getElementById("open-final-project-gallery")
+        ?.addEventListener("click", () => finalProjectGallery?.showModal());
+      document
+        .getElementById("close-final-project-gallery")
+        ?.addEventListener("click", () => finalProjectGallery?.close());
+      finalProjectGallery?.addEventListener("click", (event) => {
+        if (event.target === finalProjectGallery) finalProjectGallery.close();
+      });
+    </script>
+  </body>
+</html>

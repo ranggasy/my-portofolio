@@ -1,0 +1,456 @@
+<div class="lanyard-scene" data-lanyard aria-label="Kartu identitas interaktif">
+  <div class="doodle doodle-drag" aria-hidden="true">
+    <span>Drag me!</span>
+    <svg width="42" height="34" viewBox="0 0 50 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M40 5Q15 10 10 32M10 32l8-6M10 32l-5-10" />
+    </svg>
+  </div>
+
+  <div class="doodle doodle-left" aria-hidden="true">
+    <p>Developer</p><p>Student</p><p>Problem Solver</p>
+    <span class="underline-doodle"></span>
+  </div>
+  <div class="doodle doodle-right" aria-hidden="true">
+    <span class="cross-mark">✳</span>
+    <p>Code</p><p>Design</p><p>Build</p><p>Repeat</p>
+    <span class="underline-doodle"></span>
+  </div>
+
+  <div class="lanyard-strap strap-left" aria-hidden="true">
+    <div class="strap-text"><span>▲ RANGGA</span><span>▲ JUNIOR WEB DEVELOPER</span><span>▲ RANGGA</span><span>▲ JUNIOR WEB DEVELOPER</span></div>
+  </div>
+  <div class="lanyard-strap strap-right" aria-hidden="true">
+    <div class="strap-text"><span>▲ RANGGA</span><span>▲ JUNIOR WEB DEVELOPER</span><span>▲ RANGGA</span><span>▲ JUNIOR WEB DEVELOPER</span></div>
+  </div>
+
+  <div class="metal-clasp" data-clasp aria-hidden="true">
+    <svg width="32" height="54" viewBox="0 0 32 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lanyard-metal" x1="3" y1="0" x2="29" y2="52" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#fff"/><stop offset=".28" stop-color="#a1a1aa"/><stop offset=".55" stop-color="#f4f4f5"/><stop offset=".78" stop-color="#71717a"/><stop offset="1" stop-color="#e4e4e7"/>
+        </linearGradient>
+      </defs>
+      <path d="M7 3Q16 0 25 3L24 14Q16 18 8 14Z" fill="url(#lanyard-metal)" stroke="#71717a" stroke-width=".7"/>
+      <rect x="11" y="13" width="10" height="8" rx="2" fill="url(#lanyard-metal)" stroke="#71717a" stroke-width=".7"/>
+      <circle cx="16" cy="24" r="4.3" fill="url(#lanyard-metal)" stroke="#71717a" stroke-width=".7"/>
+      <path d="M12 28h8l2 14q.5 7-6 8-6.5-1-6-8z" fill="url(#lanyard-metal)" stroke="#71717a" stroke-width=".7"/>
+      <path d="M14 33q-1 7 2 8t2-8" stroke="#52525b" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <article class="id-card" data-card tabindex="0" role="button" aria-label="Kartu profil Rangga. Tarik untuk mengayunkan, tekan Enter untuk membalik kartu." aria-pressed="false">
+    <div class="card-shell">
+      <div class="card-face card-front">
+        <div class="card-hole-container"><span class="card-hole"></span></div>
+        <div class="card-inner">
+          <div class="card-photo">
+            <img src="/images/profile.png" alt="Foto profil Rangga" draggable="false" />
+          </div>
+          <div class="card-info">
+            <span class="card-kicker">PORTFOLIO / 2026</span>
+            <h3>Rangga Syafutra Dewa</h3>
+            <p>Junior Web Developer</p>
+            <span class="card-arrow" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 19 19 5m0 0H8m11-0v11"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back" aria-hidden="true">
+        <div class="back-mark">RS</div>
+        <span class="back-label">DIGITAL CRAFT</span>
+        <h3>Ideas into<br/>interfaces.</h3>
+        <p>Design · Develop · Iterate</p>
+        <span class="back-footer">RANGGA SYAFUTRA DEWA <span>↗</span></span>
+      </div>
+    </div>
+  </article>
+  <p class="lanyard-hint" aria-hidden="true">Tarik kartunya · klik untuk membalik</p>
+</div>
+
+<style>
+  .lanyard-scene {
+    /* Default Mode Terang (Light Mode): Kontras tinggi dengan teks gelap pekat */
+    --lanyard-ink: #0f172a;
+    --lanyard-muted: #475569;
+    --lanyard-card: #ffffff;
+    --lanyard-card-text: #0f172a;
+    --lanyard-card-subtext: #475569;
+    --lanyard-border: rgba(15, 23, 42, 0.12);
+    --lanyard-shadow: rgba(0, 0, 0, 0.14);
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    max-width: 480px;
+    height: 540px;
+    margin-inline: auto;
+    overflow: visible;
+    user-select: none;
+    touch-action: pan-y;
+    color: var(--lanyard-ink);
+    contain: layout style;
+  }
+
+  /* Khusus Mode Gelap (Dark Mode): Hanya aktif saat class .dark terpasang pada html/body */
+  :global(html.dark) .lanyard-scene,
+  :global(body.dark) .lanyard-scene,
+  :global([data-theme="dark"]) .lanyard-scene {
+    --lanyard-ink: #f8fafc;
+    --lanyard-muted: #cbd5e1;
+    --lanyard-card: #1e293b;
+    --lanyard-card-text: #f8fafc;
+    --lanyard-card-subtext: #94a3b8;
+    --lanyard-border: rgba(255, 255, 255, 0.15);
+    --lanyard-shadow: rgba(0, 0, 0, 0.45);
+  }
+
+  .doodle {
+    position: absolute;
+    z-index: 8;
+    color: var(--lanyard-ink);
+    font-family: "Caveat", "Segoe Print", cursive, sans-serif;
+    pointer-events: none;
+    transition: color 0.25s ease;
+  }
+  .doodle p { margin: 0; }
+  .doodle-drag {
+    top: 94px; right: 17px;
+    display: flex; align-items: center; gap: 5px;
+    font-size: 23px; font-weight: 700;
+    transform: rotate(-6deg);
+  }
+  .doodle-drag svg { flex: none; stroke: currentColor; }
+  .doodle-left {
+    top: 226px; left: 10px;
+    font-size: 19px; line-height: 1.18;
+    transform: rotate(-8deg);
+  }
+  .doodle-right {
+    top: 246px; right: 15px;
+    font-size: 18px; line-height: 1.2;
+    transform: rotate(5deg);
+  }
+  .cross-mark {
+    position: absolute; top: -23px; left: 8px;
+    font: 16px sans-serif; opacity: .8;
+  }
+  .underline-doodle {
+    display: block; width: 78%; height: 2px;
+    margin-top: 4px; border-radius: 50%;
+    background: currentColor; opacity: .75;
+    transform: rotate(-2deg);
+  }
+
+  .lanyard-strap {
+    position: absolute;
+    z-index: 1;
+    top: -180px;
+    left: 50%;
+    width: 34px;
+    height: 310px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 3px;
+    background: repeating-linear-gradient(90deg, #101114 0 2px, #24252a 2px 4px, #15161a 4px 6px);
+    box-shadow: inset 2px 0 2px rgba(255,255,255,.08), inset -2px 0 3px rgba(0,0,0,.35), 0 4px 12px rgba(0,0,0,.18);
+    pointer-events: none;
+    transform-origin: 50% 100%;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+  .strap-left { transform: translate3d(-50%, 0, 0) rotate(10deg); }
+  .strap-right { transform: translate3d(-50%, 0, 0) rotate(-10deg); }
+  .strap-text {
+    display: flex; flex-direction: column; align-items: center; justify-content: space-around;
+    height: 100%; padding: 14px 0; box-sizing: border-box;
+    color: #f8f8fa; font-size: 9px; font-weight: 800; letter-spacing: 1.3px;
+    writing-mode: vertical-rl; text-transform: uppercase; opacity: .95;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .metal-clasp {
+    position: absolute; z-index: 5; top: 122px; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none; transform-origin: 50% 0;
+    filter: drop-shadow(0 3px 3px rgba(0,0,0,.14));
+    will-change: transform;
+  }
+  .metal-clasp svg { display: block; }
+
+  .id-card {
+    position: absolute; z-index: 4;
+    top: 154px; left: 50%;
+    width: 246px; box-sizing: border-box;
+    padding: 7px;
+    border: 1px solid rgba(255,255,255,.72);
+    border-radius: 22px;
+    background: rgba(255,255,255,.42);
+    box-shadow: 0 20px 40px -10px var(--lanyard-shadow), 0 0 0 1px var(--lanyard-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transform: translate3d(-50%, 0, 0) rotate(3deg);
+    transform-origin: 50% -25px;
+    cursor: grab;
+    touch-action: none;
+    outline: none;
+    will-change: transform;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .id-card:active { cursor: grabbing; }
+  .id-card:focus-visible { outline: 2px solid #818cf8; outline-offset: 5px; }
+  .card-shell {
+    position: relative; display: grid;
+    transform-style: preserve-3d;
+    transition: transform .62s cubic-bezier(.2,.75,.25,1);
+  }
+  .id-card.is-flipped .card-shell { transform: rotateY(180deg); }
+  .card-face {
+    grid-area: 1 / 1;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: var(--lanyard-card);
+    color: var(--lanyard-card-text);
+    transition: background .25s ease, color .25s ease;
+  }
+  .card-hole-container { display: flex; justify-content: center; padding: 2px 0 8px; }
+  .card-hole {
+    width: 30px; height: 7px; border-radius: 10px;
+    background: rgba(120,120,130,.24);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+  }
+  .card-inner { position: relative; padding: 7px 7px 9px; }
+  .card-photo {
+    height: 235px; width: 100%;
+    overflow: hidden; border-radius: 11px;
+    background: #e7e7eb;
+  }
+  .card-photo img {
+    display: block; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 20%;
+    pointer-events: none; -webkit-user-drag: none;
+  }
+  .card-info { position: relative; padding: 11px 4px 3px; padding-right: 24px; }
+  .card-kicker {
+    display: block; margin-bottom: 5px;
+    color: var(--lanyard-card-subtext);
+    font: 700 8px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .12em;
+  }
+  .card-info h3 {
+    margin: 0; color: var(--lanyard-card-text);
+    font-size: 19px; font-weight: 800; line-height: 1.12;
+    letter-spacing: -.55px; overflow-wrap: anywhere;
+  }
+  .card-info p {
+    margin: 4px 0 0; color: var(--lanyard-card-subtext);
+    font-size: 12px; font-weight: 500; line-height: 1.3;
+  }
+  .card-arrow { position: absolute; right: 2px; bottom: 3px; color: var(--lanyard-card-text); }
+  .card-back {
+    display: flex; flex-direction: column; align-items: flex-start;
+    padding: 22px 18px 15px;
+    transform: rotateY(180deg);
+    box-sizing: border-box;
+    border: 1px solid var(--lanyard-border);
+  }
+  .back-mark {
+    display: grid; place-items: center;
+    width: 38px; height: 38px; border-radius: 12px;
+    background: var(--lanyard-card-text); color: var(--lanyard-card);
+    font-size: 13px; font-weight: 800; letter-spacing: -.04em;
+  }
+  .back-label {
+    margin-top: 24px; color: var(--lanyard-card-subtext);
+    font: 700 8px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .14em;
+  }
+  .card-back h3 {
+    margin: 9px 0 0; font-size: 25px; line-height: 1.08;
+    letter-spacing: -.8px; font-weight: 800;
+  }
+  .card-back p { margin: 10px 0 0; color: var(--lanyard-card-subtext); font-size: 11px; }
+  .back-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 100%; margin-top: auto; padding-top: 16px;
+    border-top: 1px solid var(--lanyard-border);
+    color: var(--lanyard-card-subtext);
+    font: 700 7px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .06em;
+  }
+  .back-footer span { color: var(--lanyard-card-text); font-size: 13px; }
+  .lanyard-hint {
+    position: absolute; left: 50%; bottom: 3px;
+    margin: 0; transform: translateX(-50%);
+    color: var(--lanyard-muted); opacity: .8;
+    font: 500 10px/1.4 system-ui, sans-serif;
+    white-space: nowrap; pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .lanyard-scene { height: 430px; max-width: 340px; margin-top: 10px; margin-bottom: 20px; }
+    .lanyard-strap { top: 0; height: 130px; width: 30px; }
+    .metal-clasp { top: 105px; }
+    .id-card { top: 137px; width: 215px; }
+    .card-photo { height: 190px; }
+    .card-info h3 { font-size: 17px; }
+    .doodle-drag { top: 78px; right: 0; font-size: 17px; }
+    .doodle-drag svg { width: 30px; }
+    .doodle-left { top: 185px; left: -4px; font-size: 14px; }
+    .doodle-right { top: 205px; right: -4px; font-size: 14px; }
+    .strap-text { font-size: 8px; letter-spacing: 1px; }
+    .lanyard-hint { bottom: 0; font-size: 9px; }
+  }
+  @media (max-width: 360px) {
+    .lanyard-scene { max-width: 300px; }
+    .id-card { width: 200px; }
+    .card-photo { height: 175px; }
+    .doodle-left { left: 0; font-size: 12px; }
+    .doodle-right { right: 0; font-size: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card-shell { transition-duration: .01ms; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-lanyard]").forEach((scene) => {
+    if (scene.dataset.initialized === "true") return;
+    scene.dataset.initialized = "true";
+
+    const card = scene.querySelector<HTMLElement>("[data-card]");
+    const clasp = scene.querySelector<HTMLElement>("[data-clasp]");
+    const straps = Array.from(scene.querySelectorAll<HTMLElement>(".lanyard-strap"));
+    if (!card) return;
+
+    let x = 0, y = 0, angle = 3;
+    let vx = 0, vy = 0, va = 0;
+    let pointerId: number | null = null;
+    let didMove = false;
+    let lastX = 0, lastY = 0, lastTime = 0;
+    let frame = 0;
+
+    const clamp = (value: number, min: number, max: number) =>
+      Math.max(min, Math.min(max, value));
+
+    function render() {
+      card.style.transform =
+        `translate3d(calc(-50% + ${x}px), ${y}px, 0) rotate(${angle}deg)`;
+
+      if (clasp) {
+        clasp.style.transform =
+          `translate3d(calc(-50% + ${x * .42}px), ${y * .18}px, 0) rotate(${angle * .38}deg)`;
+      }
+
+      straps.forEach((strap, index) => {
+        const base = index === 0 ? 10 : -10;
+        const follow = angle * (index === 0 ? .18 : -.18);
+        strap.style.transform =
+          `translate3d(calc(-50% + ${x * .12}px), ${y * .035}px, 0) rotate(${base + follow}deg)`;
+      });
+    }
+
+    function animate() {
+      if (pointerId === null) {
+        const spring = .065;
+        const damping = .84;
+        vx = (vx - x * spring) * damping;
+        vy = (vy - y * spring) * damping;
+        va = (va - (angle - 3) * spring) * damping;
+        x += vx;
+        y += vy;
+        angle += va;
+
+        if (
+          Math.abs(x) < .08 && Math.abs(y) < .08 &&
+          Math.abs(angle - 3) < .08 && Math.abs(vx) < .08 &&
+          Math.abs(vy) < .08 && Math.abs(va) < .08
+        ) {
+          x = 0; y = 0; vx = 0; vy = 0; va = 0; angle = 3;
+        }
+      }
+
+      render();
+
+      if (
+        pointerId !== null || Math.abs(x) > .08 || Math.abs(y) > .08 ||
+        Math.abs(angle - 3) > .08 || Math.abs(vx) > .08 ||
+        Math.abs(vy) > .08 || Math.abs(va) > .08
+      ) {
+        frame = requestAnimationFrame(animate);
+      } else {
+        frame = 0;
+      }
+    }
+
+    function startAnimation() {
+      if (!frame) frame = requestAnimationFrame(animate);
+    }
+
+    card.addEventListener("pointerdown", (event: PointerEvent) => {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      pointerId = event.pointerId;
+      didMove = false;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      lastTime = performance.now();
+      vx = 0; vy = 0; va = 0;
+      card.classList.add("is-dragging");
+      try { card.setPointerCapture(event.pointerId); } catch {}
+      startAnimation();
+    });
+
+    card.addEventListener("pointermove", (event: PointerEvent) => {
+      if (event.pointerId !== pointerId) return;
+      const now = performance.now();
+      const dt = Math.max(8, now - lastTime);
+      const dx = event.clientX - lastX;
+      const dy = event.clientY - lastY;
+      if (Math.abs(dx) + Math.abs(dy) > 3) didMove = true;
+
+      x = clamp(x + dx, -scene.clientWidth * .32, scene.clientWidth * .32);
+      y = clamp(y + dy, -35, 135);
+      vx = clamp((dx / dt) * 8, -8, 8);
+      vy = clamp((dy / dt) * 8, -8, 8);
+      va = clamp(dx * .008, -1.2, 1.2);
+      angle = clamp(angle + dx * .12, -28, 28);
+
+      lastX = event.clientX;
+      lastY = event.clientY;
+      lastTime = now;
+    });
+
+    function release(event: PointerEvent) {
+      if (event.pointerId !== pointerId) return;
+      pointerId = null;
+      card.classList.remove("is-dragging");
+      startAnimation();
+    }
+
+    card.addEventListener("pointerup", release);
+    card.addEventListener("pointercancel", release);
+    card.addEventListener("lostpointercapture", (event: PointerEvent) => {
+      if (event.pointerId === pointerId) release(event);
+    });
+
+    function flipCard() {
+      if (pointerId !== null || didMove) { didMove = false; return; }
+      card.classList.toggle("is-flipped");
+      card.setAttribute("aria-pressed", String(card.classList.contains("is-flipped")));
+    }
+
+    card.addEventListener("click", flipCard);
+    card.addEventListener("keydown", (event: KeyboardEvent) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        flipCard();
+      }
+    });
+
+    render();
+  });
+</script>

@@ -1,0 +1,554 @@
+---
+// src/components/Mascot.astro
+---
+
+<!-- Stage Maskot Terkunci di Paling Bawah -->
+<div
+  class="mascot-footer fixed inset-x-0 bottom-0 z-[60] h-28 select-none overflow-hidden pointer-events-none"
+>
+  <div
+    id="mascot-stage"
+    data-lanyard-mascot
+    class="relative mx-auto h-full w-full max-w-7xl"
+  >
+    <!-- Maskot 1 (Memegang Badge </>) -->
+    <div
+      id="mascot-1"
+      class="mascot-entity absolute bottom-0 flex flex-col items-center cursor-pointer z-20 opacity-0"
+      style="transform: translateX(-200px);"
+    >
+      <!-- Balon Ucapan -->
+      <div
+        id="bubble-1"
+        class="speech-bubble mb-1 opacity-0 transition-all duration-300 scale-90 pointer-events-none"
+      >
+        <span
+          id="text-1"
+          class="text-[11px] font-extrabold text-neutral-900 bg-amber-300 border border-amber-400 px-2.5 py-1 rounded-full shadow-md whitespace-nowrap"
+        >
+          Halo! 👋
+        </span>
+      </div>
+
+      <div class="relative flex items-center">
+        <svg
+          width="60"
+          height="56"
+          viewBox="0 0 50 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="7"
+            y="4"
+            width="36"
+            height="38"
+            rx="15"
+            fill="white"
+            stroke="#171717"
+            stroke-width="2.5"></rect>
+
+          <!-- Mata Normal Senyum -->
+          <g class="eyes-normal">
+            <path
+              d="M 18 20 Q 21 16 24 20"
+              stroke="#171717"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              fill="none"></path>
+            <path
+              d="M 26 20 Q 29 16 32 20"
+              stroke="#171717"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              fill="none"></path>
+          </g>
+
+          <!-- Mata Ketakutan / Besar Kaget (O O) -->
+          <g class="eyes-scared hidden">
+            <circle cx="18" cy="20" r="4.2" fill="#171717"></circle>
+            <circle cx="18" cy="19" r="1.4" fill="white"></circle>
+            <circle cx="32" cy="20" r="4.2" fill="#171717"></circle>
+            <circle cx="32" cy="19" r="1.4" fill="white"></circle>
+            <ellipse cx="25" cy="28" rx="3.5" ry="4" fill="#171717"></ellipse>
+          </g>
+
+          <!-- Kaki -->
+          <rect
+            class="foot-left"
+            x="13"
+            y="39"
+            width="10"
+            height="5"
+            rx="2.5"
+            fill="white"
+            stroke="#171717"
+            stroke-width="2"></rect>
+          <rect
+            class="foot-right"
+            x="27"
+            y="39"
+            width="10"
+            height="5"
+            rx="2.5"
+            fill="white"
+            stroke="#171717"
+            stroke-width="2"></rect>
+          <g class="wave-arm" transform="translate(39 25)">
+            <path
+              d="M0 3 Q2 1 2 -1"
+              stroke="#171717"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              fill="none"></path>
+            <path
+              d="M1 -2 Q0 -5 2 -6 Q4 -6 4 -3 Q6 -6 7 -4 Q8 -2 5 0 Q7 1 5 2 Q3 3 1 1 Z"
+              fill="white"
+              stroke="#171717"
+              stroke-width="1.4"
+              stroke-linejoin="round"></path>
+          </g>
+        </svg>
+
+        <!-- Badge </> Samping -->
+        <div
+          class="z-10 -ml-3 flex h-6 w-6 items-center justify-center rounded-xl bg-neutral-950 text-[10px] font-bold text-white shadow-md dark:bg-neutral-800 dark:text-neutral-100"
+        >
+          &lt;/&gt;
+        </div>
+      </div>
+    </div>
+
+    <!-- Maskot 2 (Mata Oval & Blushing) -->
+    <div
+      id="mascot-2"
+      class="mascot-entity absolute bottom-0 flex flex-col items-center cursor-pointer z-21 opacity-0"
+      style="transform: translateX(2000px);"
+    >
+      <!-- Balon Ucapan -->
+      <div
+        id="bubble-2"
+        class="speech-bubble mb-1 opacity-0 transition-all duration-300 scale-90 pointer-events-none"
+      >
+        <span
+          id="text-2"
+          class="text-[11px] font-extrabold text-neutral-900 bg-sky-300 border border-sky-400 px-2.5 py-1 rounded-full shadow-md whitespace-nowrap"
+        >
+          Selamat datang! ✨
+        </span>
+      </div>
+
+      <div class="relative">
+        <svg
+          width="60"
+          height="56"
+          viewBox="0 0 50 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="7"
+            y="4"
+            width="36"
+            height="38"
+            rx="15"
+            fill="white"
+            stroke="#171717"
+            stroke-width="2.5"></rect>
+
+          <!-- Mata Normal Oval -->
+          <g class="eyes-normal">
+            <ellipse cx="19" cy="21" rx="2.5" ry="3.8" fill="#171717"></ellipse>
+            <circle cx="20" cy="19" r="1.2" fill="white"></circle>
+            <ellipse cx="31" cy="21" rx="2.5" ry="3.8" fill="#171717"></ellipse>
+            <circle cx="32" cy="19" r="1.2" fill="white"></circle>
+            <ellipse
+              cx="13"
+              cy="25"
+              rx="2.5"
+              ry="1.5"
+              fill="#f43f5e"
+              opacity="0.4"></ellipse>
+            <ellipse
+              cx="37"
+              cy="25"
+              rx="2.5"
+              ry="1.5"
+              fill="#f43f5e"
+              opacity="0.4"></ellipse>
+          </g>
+
+          <!-- Mata Ketakutan / Besar Kaget (O O) -->
+          <g class="eyes-scared hidden">
+            <circle cx="19" cy="20" r="4.2" fill="#171717"></circle>
+            <circle cx="19" cy="19" r="1.4" fill="white"></circle>
+            <circle cx="31" cy="20" r="4.2" fill="#171717"></circle>
+            <circle cx="31" cy="19" r="1.4" fill="white"></circle>
+            <ellipse cx="25" cy="28" rx="3.5" ry="4" fill="#171717"></ellipse>
+          </g>
+
+          <!-- Kaki -->
+          <rect
+            class="foot-left"
+            x="13"
+            y="39"
+            width="10"
+            height="5"
+            rx="2.5"
+            fill="white"
+            stroke="#171717"
+            stroke-width="2"></rect>
+          <rect
+            class="foot-right"
+            x="27"
+            y="39"
+            width="10"
+            height="5"
+            rx="2.5"
+            fill="white"
+            stroke="#171717"
+            stroke-width="2"></rect>
+          <g class="wave-arm" transform="translate(39 25)">
+            <path
+              d="M0 3 Q2 1 2 -1"
+              stroke="#171717"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              fill="none"></path>
+            <path
+              d="M1 -2 Q0 -5 2 -6 Q4 -6 4 -3 Q6 -6 7 -4 Q8 -2 5 0 Q7 1 5 2 Q3 3 1 1 Z"
+              fill="white"
+              stroke="#171717"
+              stroke-width="1.4"
+              stroke-linejoin="round"></path>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .mascot-footer {
+    color-scheme: light dark;
+  }
+  .mascot-entity {
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    will-change: transform;
+    pointer-events: auto;
+  }
+  .wave-arm {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: 0% 90%;
+  }
+  .waving .wave-arm {
+    opacity: 1;
+    animation: waveHello 0.45s ease-in-out infinite alternate;
+  }
+  @keyframes waveHello {
+    from {
+      rotate: -18deg;
+    }
+    to {
+      rotate: 24deg;
+    }
+  }
+  .mascot-entity:hover {
+    filter: drop-shadow(0 4px 8px rgb(0 0 0 / 0.12));
+  }
+  .doodle {
+    color: #737373;
+  }
+  :global(.dark) .doodle {
+    color: #a1a1aa;
+  }
+  .speech-bubble {
+    transform-origin: center bottom;
+  }
+  .walking .foot-left {
+    animation: footStep 0.35s infinite alternate ease-in-out;
+  }
+  .walking .foot-right {
+    animation: footStep 0.35s infinite alternate-reverse ease-in-out;
+  }
+  .scared-run .foot-left {
+    animation: footFast 0.12s infinite alternate ease-in-out;
+  }
+  .scared-run .foot-right {
+    animation: footFast 0.12s infinite alternate-reverse ease-in-out;
+  }
+  @keyframes footStep {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-3px);
+    }
+  }
+  @keyframes footFast {
+    from {
+      transform: translateY(0) rotate(-10deg);
+    }
+    to {
+      transform: translateY(-4px) rotate(10deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .walking .foot-left,
+    .walking .foot-right,
+    .scared-run .foot-left,
+    .scared-run .foot-right {
+      animation: none !important;
+    }
+    .speech-bubble {
+      transition: none !important;
+    }
+    .wave-arm {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script>
+  const portfolioChat = [
+    { speaker: 1, message: "Eh, ada yang lihat porto kita! 👋" },
+    { speaker: 2, message: "Ajak cek project-projectnya, yuk!" },
+    { speaker: 1, message: "Ada web app sampai aplikasi POS." },
+    { speaker: 2, message: "Klik project-nya buat lihat detail!" },
+    { speaker: 1, message: "Skills dan pengalaman juga ada." },
+    { speaker: 2, message: "Yuk, scroll. Semoga tertarik! ✨" },
+  ];
+  const panicTexts1 = [
+    "Waduh, ketahuan! 😳",
+    "Jangan dikejar dong!",
+    "Aku kabur dulu! 🏃",
+    "Hehe, hampir kena!",
+  ];
+  const panicTexts2 = [
+    "Eits, jangan! 😆",
+    "Aku cuma lewat!",
+    "Lariii! 🏃",
+    "Yah, ketangkep!",
+  ];
+  const systems = new WeakMap();
+
+  function initMascotSystem() {
+    document
+      .querySelectorAll<HTMLElement>("[data-lanyard-mascot], #mascot-stage")
+      .forEach((stage) => {
+        if (systems.has(stage)) return;
+        const m1 = stage.querySelector<HTMLElement>("#mascot-1");
+        const m2 = stage.querySelector<HTMLElement>("#mascot-2");
+        if (!m1 || !m2) return;
+
+        const getWidth = () => stage.clientWidth || window.innerWidth;
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        let width = getWidth();
+        let raf = 0;
+        let lastTime = 0;
+        let phase: "ENTRANCE" | "GREETING" | "PATROL" = "ENTRANCE";
+        let disposed = false;
+
+        type Mascot = {
+          el: HTMLElement;
+          bubble: HTMLElement | null;
+          text: HTMLElement | null;
+          x: number;
+          dir: number;
+          speed: number;
+          minX: number;
+          maxX: number;
+          baseSpeed: number;
+          isScared: boolean;
+          scaredTimer?: number;
+        };
+        const makeMascot = (el: HTMLElement, index: 1 | 2): Mascot => ({
+          el,
+          bubble: el.querySelector<HTMLElement>(`.speech-bubble`),
+          text: el.querySelector<HTMLElement>(`#text-${index}`),
+          x: index === 1 ? -100 : width + 100,
+          dir: index === 1 ? 1 : -1,
+          speed: index === 1 ? 36 : 33,
+          baseSpeed: index === 1 ? 36 : 33,
+          minX: 12,
+          maxX: Math.max(12, width - 70),
+          isScared: false,
+        });
+        const a = makeMascot(m1, 1);
+        const b = makeMascot(m2, 2);
+        const mascots = [a, b];
+        let chatTimers: number[] = [];
+
+        const stopWaving = () =>
+          mascots.forEach((m) => m.el.classList.remove("waving"));
+        const startPortfolioChat = () => {
+          phase = "GREETING";
+          let turn = 0;
+          const nextTurn = () => {
+            if (disposed || phase !== "GREETING") return;
+            if (turn >= portfolioChat.length) {
+              hideBubble(a);
+              hideBubble(b);
+              stopWaving();
+              phase = "PATROL";
+              return;
+            }
+            const line = portfolioChat[turn];
+            const speaker = line.speaker === 1 ? a : b;
+            const listener = line.speaker === 1 ? b : a;
+            hideBubble(listener);
+            stopWaving();
+            showBubble(speaker, line.message);
+            speaker.el.classList.add("waving");
+            turn += 1;
+            chatTimers.push(window.setTimeout(nextTurn, 2100));
+          };
+          nextTurn();
+        };
+
+        const showBubble = (m: Mascot, message: string) => {
+          if (m.text) m.text.textContent = message;
+          m.bubble?.classList.remove("opacity-0", "scale-90");
+          m.bubble?.classList.add("opacity-100", "scale-100");
+        };
+        const hideBubble = (m: Mascot) => {
+          m.bubble?.classList.add("opacity-0", "scale-90");
+          m.bubble?.classList.remove("opacity-100", "scale-100");
+        };
+        const render = (m: Mascot) => {
+          m.el.style.transform = `translate3d(${m.x}px,0,0) scaleX(${m.dir > 0 ? 1 : -1})`;
+          if (m.bubble)
+            m.bubble.style.transform = `scaleX(${m.dir > 0 ? 1 : -1})`;
+        };
+        const setWalking = (m: Mascot, walking: boolean) =>
+          m.el.classList.toggle("walking", walking);
+
+        const triggerScared = (m: Mascot, index: 1 | 2) => {
+          if (m.isScared) return;
+          m.isScared = true;
+          m.speed = 115;
+          m.dir *= -1;
+          m.el.querySelector(".eyes-normal")?.classList.add("hidden");
+          m.el.querySelector(".eyes-scared")?.classList.remove("hidden");
+          m.el.classList.add("scared-run");
+          showBubble(
+            m,
+            (index === 1 ? panicTexts1 : panicTexts2)[
+              Math.floor(Math.random() * 4)
+            ],
+          );
+          window.clearTimeout(m.scaredTimer);
+          m.scaredTimer = window.setTimeout(() => {
+            m.isScared = false;
+            m.speed = m.baseSpeed;
+            m.el.querySelector(".eyes-normal")?.classList.remove("hidden");
+            m.el.querySelector(".eyes-scared")?.classList.add("hidden");
+            m.el.classList.remove("scared-run");
+            hideBubble(m);
+          }, 2400);
+        };
+
+        const onInteract = (m: Mascot, index: 1 | 2) => () =>
+          triggerScared(m, index);
+        const cleanups: Array<() => void> = [];
+        mascots.forEach((m, i) => {
+          const index = (i + 1) as 1 | 2;
+          const handler = onInteract(m, index);
+          m.el.addEventListener("click", handler);
+          cleanups.push(() => m.el.removeEventListener("click", handler));
+          m.el.addEventListener("pointerenter", (event) => {
+            if ((event as PointerEvent).pointerType === "mouse")
+              triggerScared(m, index);
+          });
+          m.el.style.opacity = "1";
+        });
+
+        const targetA = width * 0.28;
+        const targetB = width * 0.66;
+        a.x = -90;
+        b.x = width + 90;
+
+        const resize = () => {
+          width = getWidth();
+          mascots.forEach((m) => {
+            m.maxX = Math.max(m.minX, width - 70);
+            m.x = Math.max(-100, Math.min(m.x, m.maxX));
+          });
+        };
+        window.addEventListener("resize", resize, { passive: true });
+        cleanups.push(() => window.removeEventListener("resize", resize));
+
+        const update = (time: number) => {
+          if (disposed) return;
+          const dt = lastTime ? Math.min((time - lastTime) / 1000, 0.04) : 0;
+          lastTime = time;
+          width = getWidth();
+          mascots.forEach((m) => {
+            m.maxX = Math.max(m.minX, width - 70);
+          });
+
+          if (!prefersReducedMotion) {
+            if (phase === "ENTRANCE") {
+              const targets = [
+                Math.min(targetA, a.maxX),
+                Math.min(targetB, b.maxX),
+              ];
+              let done = true;
+              mascots.forEach((m, i) => {
+                const distance = targets[i] - m.x;
+                if (Math.abs(distance) > 2) {
+                  done = false;
+                  m.dir = distance > 0 ? 1 : -1;
+                  m.x += m.dir * Math.min(Math.abs(distance), 70 * dt);
+                  setWalking(m, true);
+                } else {
+                  m.x = targets[i];
+                  setWalking(m, false);
+                }
+              });
+              if (done) {
+                startPortfolioChat();
+              }
+            } else if (phase === "PATROL" || phase === "GREETING") {
+              if (phase === "PATROL") {
+                mascots.forEach((m) => {
+                  m.x += m.dir * m.speed * dt;
+                  setWalking(m, true);
+                  if (m.x <= m.minX) {
+                    m.x = m.minX;
+                    m.dir = 1;
+                  }
+                  if (m.x >= m.maxX) {
+                    m.x = m.maxX;
+                    m.dir = -1;
+                  }
+                });
+              }
+            }
+          } else if (phase === "ENTRANCE") {
+            a.x = Math.min(width * 0.28, a.maxX);
+            b.x = Math.min(width * 0.66, b.maxX);
+            startPortfolioChat();
+          }
+          mascots.forEach(render);
+          raf = requestAnimationFrame(update);
+        };
+        raf = requestAnimationFrame(update);
+        systems.set(stage, () => {
+          disposed = true;
+          cancelAnimationFrame(raf);
+          chatTimers.forEach((timer) => window.clearTimeout(timer));
+          mascots.forEach((m) => window.clearTimeout(m.scaredTimer));
+          cleanups.forEach((fn) => fn());
+        });
+      });
+  }
+
+  initMascotSystem();
+  document.addEventListener("astro:page-load", initMascotSystem);
+</script>

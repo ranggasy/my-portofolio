@@ -1,0 +1,171 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section
+  id="contact"
+  class="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24"
+>
+  <div class="mb-10 max-w-2xl">
+    <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
+      08 . &gt;_ GET IN TOUCH
+    </p>
+    <h2 class="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white sm:text-4xl">
+      Let's build something useful.
+    </h2>
+    <p class="mt-4 text-base leading-7 text-neutral-600 dark:text-neutral-400">
+      Punya pertanyaan, peluang kerja, atau ide kolaborasi? Kirim pesan melalui formulir berikut.
+    </p>
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-8">
+    <aside class="flex flex-col justify-between rounded-3xl bg-neutral-950 p-7 text-white dark:border dark:border-neutral-800 dark:bg-neutral-900 sm:p-9">
+      <div>
+        <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10">
+          <Icon name="lucide:message-circle" class="h-6 w-6" />
+        </span>
+        <h3 class="mt-7 text-2xl font-bold tracking-tight">Let's talk.</h3>
+        <p class="mt-3 max-w-sm text-sm leading-7 text-neutral-300">
+          Saya terbuka untuk kesempatan Web Developer, kolaborasi proyek, maupun diskusi seputar teknologi.
+        </p>
+      </div>
+
+      <div class="mt-10 space-y-5">
+        <a
+          href="mailto:rasyadpsn@gmail.com"
+          class="group flex items-center gap-3 text-sm text-neutral-200 transition-colors hover:text-white"
+        >
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/5">
+            <Icon name="lucide:mail" class="h-4 w-4" />
+          </span>
+          <span>
+            <span class="block text-xs text-neutral-400">Email</span>
+            <span class="font-medium">rasyadpsn@gmail.com</span>
+          </span>
+          <Icon name="lucide:arrow-up-right" class="ml-auto h-4 w-4 text-neutral-500 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </a>
+
+        <div class="flex items-center gap-3 text-sm text-neutral-200">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/5">
+            <Icon name="lucide:map-pin" class="h-4 w-4" />
+          </span>
+          <span>
+            <span class="block text-xs text-neutral-400">Location</span>
+            <span class="font-medium">Pangkalpinang, Bangka Belitung</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="mt-10 flex items-center gap-2 border-t border-white/10 pt-5 text-xs text-neutral-400">
+        <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+        Available for opportunities
+      </div>
+    </aside>
+
+    <div class="rounded-3xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900/50 sm:p-9">
+      <div class="mb-7 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h3 class="text-xl font-bold text-neutral-950 dark:text-white">Send a message</h3>
+          <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">Fields marked with * are required.</p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-700 dark:border-amber-900/60 dark:bg-amber-950/30 dark:text-amber-300">
+          <Icon name="lucide:construction" class="h-3.5 w-3.5" />
+          Preview mode
+        </span>
+      </div>
+
+      <form id="portfolio-contact-form" class="space-y-5" novalidate>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="block">
+            <span class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200">Your name <span class="text-blue-600">*</span></span>
+            <input
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+              minlength="2"
+              maxlength="80"
+              placeholder="Masukkan nama kamu"
+              class="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-neutral-700 dark:bg-neutral-950 dark:text-white dark:focus:bg-neutral-950"
+            />
+          </label>
+
+          <label class="block">
+            <span class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200">Gmail address <span class="text-blue-600">*</span></span>
+            <input
+              name="email"
+              type="email"
+              autocomplete="email"
+              inputmode="email"
+              required
+              maxlength="254"
+              pattern="[A-Za-z0-9._%+-]+@gmail\.com"
+              placeholder="nama@gmail.com"
+              title="Gunakan alamat email @gmail.com"
+              class="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-neutral-700 dark:bg-neutral-950 dark:text-white dark:focus:bg-neutral-950"
+            />
+            <span class="mt-1.5 block text-xs text-neutral-500 dark:text-neutral-400">Gunakan alamat email yang berakhiran @gmail.com.</span>
+          </label>
+        </div>
+
+        <label class="block">
+          <span class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200">Subject <span class="text-blue-600">*</span></span>
+          <input
+            name="subject"
+            type="text"
+            required
+            minlength="3"
+            maxlength="120"
+            placeholder="Contoh: Kesempatan Web Developer"
+            class="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-neutral-700 dark:bg-neutral-950 dark:text-white dark:focus:bg-neutral-950"
+          />
+        </label>
+
+        <label class="block">
+          <span class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200">Message <span class="text-blue-600">*</span></span>
+          <textarea
+            name="message"
+            required
+            minlength="10"
+            maxlength="2000"
+            rows="5"
+            placeholder="Ceritakan pesan atau kebutuhan kamu..."
+            class="w-full resize-y rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm leading-6 text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-neutral-700 dark:bg-neutral-950 dark:text-white dark:focus:bg-neutral-950"
+          ></textarea>
+          <span class="mt-1.5 block text-right text-xs text-neutral-500 dark:text-neutral-400"><span id="contact-message-count">0</span>/2000</span>
+        </label>
+
+        <div id="contact-form-notice" class="hidden rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm leading-6 text-blue-800 dark:border-blue-900/60 dark:bg-blue-950/30 dark:text-blue-200" role="status" aria-live="polite"></div>
+
+        <button
+          type="submit"
+          class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-950 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 sm:w-auto"
+        >
+          Send Message
+          <Icon name="lucide:send" class="h-4 w-4" />
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const contactForm = document.querySelector<HTMLFormElement>("#portfolio-contact-form");
+  const contactNotice = document.querySelector<HTMLDivElement>("#contact-form-notice");
+  const messageField = contactForm?.querySelector<HTMLTextAreaElement>('textarea[name="message"]');
+  const messageCount = document.querySelector<HTMLElement>("#contact-message-count");
+
+  messageField?.addEventListener("input", () => {
+    if (messageCount) messageCount.textContent = String(messageField.value.length);
+  });
+
+  contactForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!contactForm.reportValidity()) return;
+
+    if (contactNotice) {
+      contactNotice.textContent = "Tampilan formulir sudah siap. Pengiriman pesan akan diaktifkan setelah backend Supabase diintegrasikan.";
+      contactNotice.classList.remove("hidden");
+    }
+  });
+</script>
