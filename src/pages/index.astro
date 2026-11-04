@@ -496,7 +496,7 @@ const achievements = [
             products that solve problems.
           </p>
 
-          <div class="mt-8 flex flex-wrap gap-3">
+          <div class="hero-cta-links relative z-30 mt-8 flex flex-wrap gap-3">
             <a
               href="#projects"
               class="inline-flex items-center justify-center gap-2 rounded-xl bg-neutral-950 px-6 py-4 text-sm font-semibold !text-white transition-colors hover:bg-neutral-800 dark:bg-white dark:!text-neutral-950 dark:hover:bg-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
@@ -515,7 +515,7 @@ const achievements = [
           </div>
 
           <!-- Social Links -->
-          <div class="mt-8 flex items-center gap-3">
+          <div class="hero-social-links relative z-30 mt-8 flex items-center gap-3">
             <a
               href="https://github.com/ranggasy"
               target="_blank"
@@ -1132,8 +1132,7 @@ const achievements = [
               >
                 <span
                   ><Icon name="lucide:image" class="mx-auto mb-2 h-8 w-8" />Foto
-                  magang 1 belum diunggah</span
-                >
+                  magang 1 belum diunggah</span>
               </div>
               <figcaption
                 class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
@@ -1145,7 +1144,7 @@ const achievements = [
               class="overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-800"
             >
               <img
-                src="/images/internship/magang-2.png"
+                src="/images/internship/magang-2.jpg"
                 alt="Dokumentasi magang 2"
                 loading="lazy"
                 class="aspect-[4/3] w-full object-cover"
@@ -1156,8 +1155,7 @@ const achievements = [
               >
                 <span
                   ><Icon name="lucide:image" class="mx-auto mb-2 h-8 w-8" />Foto
-                  magang 2 belum diunggah</span
-                >
+                  magang 2 belum diunggah</span>
               </div>
               <figcaption
                 class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
@@ -1176,7 +1174,7 @@ const achievements = [
             class="sticky top-0 z-10 flex items-center justify-between border-b border-neutral-200 bg-white/95 p-5 backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/95"
           >
             <div>
-              <h3 class="font-bold">Bukti Dokumentasi Tugas Akhir</h3>
+              <h3 class="font-bold">Bukti Tugas Akhir</h3>
               <p class="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
                 Sistem Informasi SLB YPAC Pangkalpinang berbasis PWA
               </p>
@@ -1194,8 +1192,8 @@ const achievements = [
               class="overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-800"
             >
               <img
-                src="/images/final-project/bukti-1.jpeg"
-                alt="Bukti dokumentasi tugas akhir 1"
+                src="/images/final-project/bukti-1.jpg"
+                alt="Bukti tugas akhir 1"
                 loading="lazy"
                 class="aspect-[4/3] w-full object-cover"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'"
@@ -1207,8 +1205,7 @@ const achievements = [
                   ><Icon
                     name="lucide:image"
                     class="mx-auto mb-2 h-8 w-8"
-                  />Bukti dokumentasi tugas akhir 1 belum diunggah</span
-                >
+                  />Bukti tugas akhir 1 belum diunggah</span>
               </div>
               <figcaption
                 class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
@@ -1220,8 +1217,8 @@ const achievements = [
               class="overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-800"
             >
               <img
-                src="/images/final-project/bukti-2.png"
-                alt="Bukti dokumentasi tugas akhir 2"
+                src="/images/final-project/bukti-2.jpg"
+                alt="Bukti tugas akhir 2"
                 loading="lazy"
                 class="aspect-[4/3] w-full object-cover"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid'"
@@ -1233,8 +1230,7 @@ const achievements = [
                   ><Icon
                     name="lucide:image"
                     class="mx-auto mb-2 h-8 w-8"
-                  />Bukti dokumentasi tugas akhir 2 belum diunggah</span
-                >
+                  />Bukti tugas akhir 2 belum diunggah</span>
               </div>
               <figcaption
                 class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
@@ -1511,22 +1507,19 @@ const achievements = [
               <a
                 href="#organization"
                 class="hover:text-neutral-950 dark:hover:text-white transition-colors"
-                >Organization</a
-              >
+                >Organization</a>
             </li>
             <li>
               <a
                 href="#certificates"
                 class="hover:text-neutral-950 dark:hover:text-white transition-colors"
-                >Certificates</a
-              >
+                >Certificates</a>
             </li>
             <li>
               <a
                 href="#achievements"
                 class="hover:text-neutral-950 dark:hover:text-white transition-colors"
-                >Achievements</a
-              >
+                >Achievements</a>
             </li>
           </ul>
         </div>
@@ -1623,6 +1616,23 @@ const achievements = [
           overflow-x: hidden;
         }
 
+        /* CTA dan social buttons berada di depan tali lanyard. */
+        #home > .max-w-xl {
+          position: relative;
+          z-index: 30;
+        }
+
+        #home .hero-cta-links,
+        #home .hero-social-links {
+          position: relative;
+          z-index: 40;
+        }
+
+        #home > .hero-lanyard {
+          position: relative;
+          z-index: 10;
+        }
+
         header > div {
           min-height: 64px;
         }
@@ -1655,7 +1665,7 @@ const achievements = [
         .hero-lanyard .lanyard-scene {
           height: 500px;
           max-width: 340px;
-          transform: translateY(12px);
+          transform: translateY(-18px);
           transform-origin: top center;
         }
 

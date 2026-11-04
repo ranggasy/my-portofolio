@@ -292,10 +292,35 @@
   }
 
   @media (max-width: 768px) {
-    .lanyard-scene { height: 430px; max-width: 340px; margin-top: 10px; margin-bottom: 20px; }
-    .lanyard-strap { top: 0; height: 130px; width: 30px; }
-    .metal-clasp { top: 105px; }
-    .id-card { top: 137px; width: 215px; }
+    .lanyard-scene {
+      height: 430px;
+      max-width: 340px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      overflow: visible;
+    }
+
+    /* Tali kain asli memanjang ke CTA, dengan social buttons berada di depannya. */
+    .lanyard-strap {
+      top: -18px;
+      left: 0;
+      width: 30px;
+      height: 148px;
+      z-index: 1;
+      transform-origin: 50% 0;
+    }
+
+    .strap-left,
+    .strap-right {
+      transform-origin: 50% 0;
+    }
+
+    /* Strap stays behind the CTA/social layer supplied by index.astro. */
+    .metal-clasp { z-index: 5; }
+    .id-card { z-index: 4; }
+
+    .metal-clasp { top: 57px; }
+    .id-card { top: 89px; width: 215px; }
     .card-photo { height: 190px; }
     .card-info h3 { font-size: 17px; }
     .doodle-drag { top: 78px; right: 0; font-size: 17px; }
@@ -346,12 +371,50 @@
           `translate3d(calc(-50% + ${x * .42}px), ${y * .18}px, 0) rotate(${angle * .38}deg)`;
       }
 
-      straps.forEach((strap, index) => {
-        const base = index === 0 ? 10 : -10;
-        const follow = angle * (index === 0 ? .18 : -.18);
-        strap.style.transform =
-          `translate3d(calc(-50% + ${x * .12}px), ${y * .035}px, 0) rotate(${base + follow}deg)`;
-      });
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+      if (isMobile) {
+        const sceneRect = scene.getBoundingClientRect();
+        const claspTop = clasp ? clasp.offsetTop + y * .18 : 105 + y * .18;
+        const claspCenterX = scene.clientWidth / 2 + x * .42;
+
+        const anchors = [
+          document.querySelector<HTMLElement>('#home a[href="#projects"]'),
+          document.querySelector<HTMLElement>('#home a[href="/cv-rangga.pdf"]'),
+        ];
+
+        straps.forEach((strap, index) => {
+          const anchor = anchors[index];
+          if (!anchor) return;
+
+          const anchorRect = anchor.getBoundingClientRect();
+          const startX = (
+            index === 0
+              ? anchorRect.right - 45
+              : anchorRect.left + 45
+          ) - sceneRect.left;
+          const startY = anchorRect.top - sceneRect.top + anchorRect.height * 0.78;
+          const endX = claspCenterX + (index === 0 ? -5 : 5);
+          const endY = claspTop;
+          const dx = endX - startX;
+          const dy = Math.max(1, endY - startY);
+          const length = Math.hypot(dx, dy);
+          const rotation = Math.atan2(-dx, dy) * (180 / Math.PI);
+
+          strap.style.left = `${startX - 15}px`;
+          strap.style.top = `${startY}px`;
+          strap.style.height = `${length}px`;
+          strap.style.transform =
+            `rotate(${rotation + angle * (index === 0 ? .08 : -.08)}deg)`;
+        });
+      } else {
+        straps.forEach((strap, index) => {
+          const base = index === 0 ? 10 : -10;
+          const follow = angle * (index === 0 ? .18 : -.18);
+          strap.style.transform =
+            `translate3d(calc(-50% + ${x * .12}px), ${y * .035}px, 0) rotate(${base + follow}deg)`;
+        });
+      }
     }
 
     function animate() {
