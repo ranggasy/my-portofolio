@@ -305,6 +305,8 @@ const achievements = [
       content="Portofolio Rangga, Web Developer yang membangun aplikasi web modern dan bermanfaat."
     />
     <title>Rangga | Web Developer</title>
+    <link rel="icon" type="image/png" href="/images/rs-logo.png" />
+    <link rel="apple-touch-icon" href="/images/rs-logo.png" />
 
     <!-- Script Anti-FOUC (Cek Tema Awal) -->
     <script is:inline>
@@ -327,11 +329,115 @@ const achievements = [
         document.documentElement.classList.remove("dark");
       }
     </script>
+    <style is:global>
+      #site-preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: #ffffff;
+        color: #171717;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 420ms ease, visibility 420ms ease;
+      }
+      html.dark #site-preloader {
+        background: #030712;
+        color: #f8fafc;
+      }
+      #site-preloader.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      #site-preloader .preloader-content {
+        width: min(100%, 260px);
+        text-align: center;
+        animation: preloader-enter 520ms ease both;
+      }
+      #site-preloader .preloader-logo {
+        display: block;
+        width: 76px;
+        height: 76px;
+        margin: 0 auto 22px;
+        object-fit: contain;
+      }
+      #site-preloader .preloader-name {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+        font-weight: 650;
+        letter-spacing: 0.015em;
+      }
+      #site-preloader .preloader-role {
+        margin: 5px 0 0;
+        color: #737373;
+        font-size: 11px;
+        letter-spacing: 0.025em;
+      }
+      html.dark #site-preloader .preloader-role {
+        color: #9ca3af;
+      }
+      #site-preloader .preloader-track {
+        width: 112px;
+        height: 2px;
+        margin: 28px auto 0;
+        overflow: hidden;
+        background: #e5e5e5;
+      }
+      html.dark #site-preloader .preloader-track {
+        background: #273244;
+      }
+      #site-preloader .preloader-progress {
+        width: 38%;
+        height: 100%;
+        background: #0284c7;
+        animation: preloader-progress 1.15s ease-in-out infinite;
+      }
+      @keyframes preloader-enter {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes preloader-progress {
+        from { transform: translateX(-110%); }
+        to { transform: translateX(300%); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #site-preloader, #site-preloader * {
+          animation-duration: 1ms !important;
+          transition-duration: 1ms !important;
+        }
+      }
+    </style>
   </head>
 
   <body
     class="bg-white font-sans text-neutral-900 antialiased overflow-x-hidden dark:bg-[#030712] dark:text-neutral-100"
   >
+    <div
+      id="site-preloader"
+      role="status"
+      aria-live="polite"
+      aria-label="Memuat portfolio"
+    >
+      <div class="preloader-content">
+        <img
+          src="/images/rs-logo.png"
+          alt="Logo RS"
+          class="preloader-logo"
+          width="76"
+          height="76"
+          fetchpriority="high"
+        />
+        <p class="preloader-name">Rangga Syafutra Dewa</p>
+        <p class="preloader-role">Web Developer</p>
+        <div class="preloader-track" aria-hidden="true">
+          <div class="preloader-progress"></div>
+        </div>
+      </div>
+    </div>
     <!-- Efek Background Meteor -->
     <Meteors number={25} />
     <!-- Navbar Sticky -->
@@ -346,7 +452,28 @@ const achievements = [
           class="shrink-0 text-lg font-extrabold tracking-tight text-neutral-950 dark:text-white"
           aria-label="Rangga, kembali ke halaman utama"
         >
-          ◢ Rangga
+          <div class="flex items-center gap-3">
+            <img
+              src="/images/rs-logo.png"
+              alt="Logo RS"
+              class="h-10 w-10 object-contain"
+              width="40"
+              height="40"
+            />
+
+            <div class="flex flex-col">
+              <span
+                class="text-sm font-bold text-gray-900 dark:text-white transition-colors"
+              >
+                Rangga Syafutra Dewa
+              </span>
+              <span
+                class="text-xs text-gray-500 dark:text-gray-400 transition-colors"
+              >
+                Web Developer
+              </span>
+            </div>
+          </div>
         </a>
 
         <!-- Navigasi Utama dengan Indikator Aktif (Pill Style) -->
@@ -515,7 +642,9 @@ const achievements = [
           </div>
 
           <!-- Social Links -->
-          <div class="hero-social-links relative z-30 mt-8 flex items-center gap-3">
+          <div
+            class="hero-social-links relative z-30 mt-8 flex items-center gap-3"
+          >
             <a
               href="https://github.com/ranggasy"
               target="_blank"
@@ -1132,7 +1261,8 @@ const achievements = [
               >
                 <span
                   ><Icon name="lucide:image" class="mx-auto mb-2 h-8 w-8" />Foto
-                  magang 1 belum diunggah</span>
+                  magang 1 belum diunggah</span
+                >
               </div>
               <figcaption
                 class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
@@ -1155,7 +1285,8 @@ const achievements = [
               >
                 <span
                   ><Icon name="lucide:image" class="mx-auto mb-2 h-8 w-8" />Foto
-                  magang 2 belum diunggah</span>
+                  magang 2 belum diunggah</span
+                >
               </div>
               <figcaption
                 class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
@@ -1205,7 +1336,8 @@ const achievements = [
                   ><Icon
                     name="lucide:image"
                     class="mx-auto mb-2 h-8 w-8"
-                  />Bukti tugas akhir 1 belum diunggah</span>
+                  />Bukti tugas akhir 1 belum diunggah</span
+                >
               </div>
               <figcaption
                 class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
@@ -1230,7 +1362,8 @@ const achievements = [
                   ><Icon
                     name="lucide:image"
                     class="mx-auto mb-2 h-8 w-8"
-                  />Bukti tugas akhir 2 belum diunggah</span>
+                  />Bukti tugas akhir 2 belum diunggah</span
+                >
               </div>
               <figcaption
                 class="px-4 py-3 text-xs font-medium text-neutral-600 dark:text-neutral-300"
@@ -1441,7 +1574,13 @@ const achievements = [
             href="#home"
             class="text-lg font-extrabold tracking-tight text-neutral-950 dark:text-white"
           >
-            ◢ Rangga
+            <img
+              src="/images/rs-logo.png"
+              alt="Logo RS"
+              class="h-10 w-10 object-contain"
+              width="40"
+              height="40"
+            />
           </a>
           <p
             class="mt-3 text-sm text-neutral-600 dark:text-neutral-400 max-w-xs"
@@ -1507,19 +1646,22 @@ const achievements = [
               <a
                 href="#organization"
                 class="hover:text-neutral-950 dark:hover:text-white transition-colors"
-                >Organization</a>
+                >Organization</a
+              >
             </li>
             <li>
               <a
                 href="#certificates"
                 class="hover:text-neutral-950 dark:hover:text-white transition-colors"
-                >Certificates</a>
+                >Certificates</a
+              >
             </li>
             <li>
               <a
                 href="#achievements"
                 class="hover:text-neutral-950 dark:hover:text-white transition-colors"
-                >Achievements</a>
+                >Achievements</a
+              >
             </li>
           </ul>
         </div>
@@ -2043,6 +2185,29 @@ const achievements = [
       finalProjectGallery?.addEventListener("click", (event) => {
         if (event.target === finalProjectGallery) finalProjectGallery.close();
       });
+    </script>
+    <script is:inline>
+      (() => {
+        const overlay = document.getElementById("site-preloader");
+        if (!overlay) return;
+
+        let finished = false;
+        const hideLoader = () => {
+          if (finished) return;
+          finished = true;
+          overlay.classList.add("is-hidden");
+          window.setTimeout(() => overlay.remove(), 450);
+        };
+
+        if (document.readyState === "complete") {
+          window.setTimeout(hideLoader, 250);
+        } else {
+          window.addEventListener("load", () => {
+            window.setTimeout(hideLoader, 250);
+          }, { once: true });
+        }
+        window.setTimeout(hideLoader, 6000);
+      })();
     </script>
   </body>
 </html>
