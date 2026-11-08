@@ -341,7 +341,9 @@ const achievements = [
         color: #171717;
         opacity: 1;
         visibility: visible;
-        transition: opacity 420ms ease, visibility 420ms ease;
+        transition:
+          opacity 420ms ease,
+          visibility 420ms ease;
       }
       html.dark #site-preloader {
         background: #030712;
@@ -397,15 +399,26 @@ const achievements = [
         animation: preloader-progress 1.15s ease-in-out infinite;
       }
       @keyframes preloader-enter {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
       @keyframes preloader-progress {
-        from { transform: translateX(-110%); }
-        to { transform: translateX(300%); }
+        from {
+          transform: translateX(-110%);
+        }
+        to {
+          transform: translateX(300%);
+        }
       }
       @media (prefers-reduced-motion: reduce) {
-        #site-preloader, #site-preloader * {
+        #site-preloader,
+        #site-preloader * {
           animation-duration: 1ms !important;
           transition-duration: 1ms !important;
         }
@@ -749,11 +762,15 @@ const achievements = [
               class="text-base leading-8 text-neutral-700 dark:text-neutral-300"
             >
               Lulusan S1 Teknik Informatika dari Institut Sains dan Bisnis Atma
-              Luhur dengan IPK 3,92/4,00. Memiliki pengalaman mengembangkan
-              sistem informasi berbasis PWA menggunakan CodeIgniter 4 dan MySQL,
-              serta pemahaman dalam pengembangan aplikasi web, pengelolaan basis
-              data, dan debugging. Terbiasa memanfaatkan AI coding tools untuk
-              mendukung proses pengembangan dan pemecahan masalah teknis.
+              Luhur dengan IPK 3,92/4,00. Memiliki pengalaman dalam pengembangan
+              aplikasi dan sistem informasi berbasis web menggunakan berbagai
+              teknologi, termasuk CodeIgniter 4, Next.js, dan MySQL. Memahami
+              pengembangan aplikasi web, pengelolaan basis data, integrasi
+              sistem, serta debugging. Terbiasa memanfaatkan AI coding tools
+              untuk mendukung proses pengembangan dan pemecahan masalah teknis.
+              Memiliki ketertarikan untuk terus mengembangkan kompetensi di
+              bidang teknologi informasi, khususnya pengembangan perangkat lunak
+              dan pengelolaan sistem informasi.
             </p>
 
             <div class="mt-8 grid grid-cols-2 gap-5">
@@ -2202,9 +2219,13 @@ const achievements = [
         if (document.readyState === "complete") {
           window.setTimeout(hideLoader, 250);
         } else {
-          window.addEventListener("load", () => {
-            window.setTimeout(hideLoader, 250);
-          }, { once: true });
+          window.addEventListener(
+            "load",
+            () => {
+              window.setTimeout(hideLoader, 250);
+            },
+            { once: true },
+          );
         }
         window.setTimeout(hideLoader, 6000);
       })();
