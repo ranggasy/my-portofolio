@@ -266,10 +266,15 @@
     color: #a1a1aa;
   }
   .speech-bubble {
-    transform-origin: center bottom;
-    position: relative;
+    position: absolute;
     left: 0;
-    max-width: calc(100vw - 24px);
+    bottom: 60px;
+    z-index: 100;
+    width: max-content;
+    max-width: min(320px, calc(100vw - 24px));
+    margin: 0;
+    transform-origin: center bottom;
+    pointer-events: none;
   }
 
   .speech-bubble span {
@@ -277,7 +282,7 @@
     max-width: 100%;
     white-space: normal;
     text-align: center;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
   }
   .walking .foot-left {
     animation: footStep 0.35s infinite alternate ease-in-out;
@@ -393,6 +398,14 @@
         const a = makeMascot(m1, 1);
         const b = makeMascot(m2, 2);
         const mascots = [a, b];
+
+        // Pindahkan bubble ke stage supaya posisinya dihitung terhadap viewport
+        // stage, bukan terhadap elemen maskot yang sedang bergerak/flip.
+        mascots.forEach((m) => {
+          if (m.bubble && m.bubble.parentElement !== stage) {
+            stage.appendChild(m.bubble);
+          }
+        });
         let chatTimers: number[] = [];
 
         const stopWaving = () =>
@@ -435,20 +448,21 @@
           m.el.style.transform = `translate3d(${m.x}px,0,0) scaleX(${m.dir > 0 ? 1 : -1})`;
 
           if (m.bubble) {
+            // Bubble ditempatkan langsung di stage agar tidak ikut terpotong
+            // atau terbalik oleh transform maskot.
             const bubbleWidth = m.bubble.offsetWidth;
             const mascotWidth = m.el.offsetWidth;
-
-            const currentLeft = m.x + (mascotWidth - bubbleWidth) / 2;
+            const mascotCenter = m.x + mascotWidth / 2;
 
             const minLeft = 12;
             const maxLeft = Math.max(minLeft, width - bubbleWidth - 12);
+            const safeLeft = Math.max(
+              minLeft,
+              Math.min(mascotCenter - bubbleWidth / 2, maxLeft),
+            );
 
-            const safeLeft = Math.max(minLeft, Math.min(currentLeft, maxLeft));
-
-            const offset = safeLeft - currentLeft;
-
-            m.bubble.style.left = `${offset}px`;
-            m.bubble.style.transform = `scaleX(${m.dir > 0 ? 1 : -1})`;
+            m.bubble.style.left = `${safeLeft}px`;
+            m.bubble.style.bottom = `${m.el.offsetHeight + 4}px`;
           }
         };
         const setWalking = (m: Mascot, walking: boolean) =>
