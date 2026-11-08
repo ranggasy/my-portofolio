@@ -376,7 +376,7 @@
           speed: index === 1 ? 36 : 33,
           baseSpeed: index === 1 ? 36 : 33,
           minX: 12,
-          maxX: Math.max(12, width - 70),
+          maxX: Math.max(12, width - 100),
           isScared: false,
         });
         const a = makeMascot(m1, 1);
@@ -469,14 +469,14 @@
         });
 
         const targetA = width * 0.28;
-        const targetB = width * 0.66;
+        const targetB = Math.min(width * 0.66, width - 100);
         a.x = -90;
         b.x = width + 90;
 
         const resize = () => {
           width = getWidth();
           mascots.forEach((m) => {
-            m.maxX = Math.max(m.minX, width - 70);
+            m.maxX = Math.max(m.minX, width - 100);
             m.x = Math.max(-100, Math.min(m.x, m.maxX));
           });
         };
@@ -489,7 +489,7 @@
           lastTime = time;
           width = getWidth();
           mascots.forEach((m) => {
-            m.maxX = Math.max(m.minX, width - 70);
+            m.maxX = Math.max(m.minX, width - 100);
           });
 
           if (!prefersReducedMotion) {
