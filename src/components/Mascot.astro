@@ -20,7 +20,7 @@
       <!-- Balon Ucapan -->
       <div
         id="bubble-1"
-        class="speech-bubble mb-1 opacity-0 transition-all duration-300 scale-90 pointer-events-none"
+        class="speech-bubble mb-1 max-w-[calc(100vw-24px)] opacity-0 transition-all duration-300 scale-90 pointer-events-none"
       >
         <span
           id="text-1"
@@ -128,7 +128,7 @@
       <!-- Balon Ucapan -->
       <div
         id="bubble-2"
-        class="speech-bubble mb-1 opacity-0 transition-all duration-300 scale-90 pointer-events-none"
+        class="speech-bubble mb-1 max-w-[calc(100vw-24px)] opacity-0 transition-all duration-300 scale-90 pointer-events-none"
       >
         <span
           id="text-2"
@@ -267,6 +267,17 @@
   }
   .speech-bubble {
     transform-origin: center bottom;
+    position: relative;
+    left: 0;
+    max-width: calc(100vw - 24px);
+  }
+
+  .speech-bubble span {
+    display: inline-block;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    overflow-wrap: break-word;
   }
   .walking .foot-left {
     animation: footStep 0.35s infinite alternate ease-in-out;
@@ -422,8 +433,23 @@
         };
         const render = (m: Mascot) => {
           m.el.style.transform = `translate3d(${m.x}px,0,0) scaleX(${m.dir > 0 ? 1 : -1})`;
-          if (m.bubble)
+
+          if (m.bubble) {
+            const bubbleWidth = m.bubble.offsetWidth;
+            const mascotWidth = m.el.offsetWidth;
+
+            const currentLeft = m.x + (mascotWidth - bubbleWidth) / 2;
+
+            const minLeft = 12;
+            const maxLeft = Math.max(minLeft, width - bubbleWidth - 12);
+
+            const safeLeft = Math.max(minLeft, Math.min(currentLeft, maxLeft));
+
+            const offset = safeLeft - currentLeft;
+
+            m.bubble.style.left = `${offset}px`;
             m.bubble.style.transform = `scaleX(${m.dir > 0 ? 1 : -1})`;
+          }
         };
         const setWalking = (m: Mascot, walking: boolean) =>
           m.el.classList.toggle("walking", walking);
